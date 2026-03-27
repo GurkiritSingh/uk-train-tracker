@@ -189,9 +189,15 @@
             background: var(--accent-glow); color: var(--accent-light);
         }
 
+        .autocomplete-item.group-item {
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
         .autocomplete-item .station-code {
             font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
             background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px;
+            flex-shrink: 0;
         }
 
         .swap-btn {
@@ -761,6 +767,30 @@ const UK_STATIONS = [
 ];
 
 // ══════════════════════════════════════
+// STATION GROUPS (city-wide)
+// ══════════════════════════════════════
+const STATION_GROUPS = [
+    { name: "London (All Stations)", code: "LON", group: true, stations: ["EUS","KGX","STP","PAD","VIC","WAT","LST","LBG","CHX","CST","FST","MYB","BFR","MOG"] },
+    { name: "Canterbury (All Stations)", code: "CBW", group: true, stations: ["CBW","CBE"] },
+    { name: "Birmingham (All Stations)", code: "BHM", group: true, stations: ["BHM","BMO","BSW","BHI"] },
+    { name: "Manchester (All Stations)", code: "MAN", group: true, stations: ["MAN","MCV","MCO"] },
+    { name: "Liverpool (All Stations)", code: "LIV", group: true, stations: ["LIV","LPY"] },
+    { name: "Edinburgh (All Stations)", code: "EDB", group: true, stations: ["EDB","HYM"] },
+    { name: "Glasgow (All Stations)", code: "GLC", group: true, stations: ["GLC","GLQ"] },
+    { name: "Bristol (All Stations)", code: "BRI", group: true, stations: ["BRI","BPW"] },
+    { name: "Cardiff (All Stations)", code: "CDF", group: true, stations: ["CDF","CDQ"] },
+    { name: "Southampton (All Stations)", code: "SOU", group: true, stations: ["SOU"] },
+    { name: "Portsmouth (All Stations)", code: "PMH", group: true, stations: ["PMH","PMS"] },
+    { name: "Sheffield (All Stations)", code: "SHF", group: true, stations: ["SHF"] },
+    { name: "Leeds (All Stations)", code: "LDS", group: true, stations: ["LDS"] },
+    { name: "Newcastle (All Stations)", code: "NCL", group: true, stations: ["NCL"] },
+    { name: "Exeter (All Stations)", code: "EXD", group: true, stations: ["EXD","EXC"] },
+];
+
+// Combined list: groups first, then individual stations
+const ALL_STATIONS = [...STATION_GROUPS, ...UK_STATIONS];
+
+// ══════════════════════════════════════
 // AUTOCOMPLETE
 // ══════════════════════════════════════
 let selectedFrom = null;
@@ -770,35 +800,65 @@ function setupAutocomplete(inputId, listId, setFn) {
     const input = document.getElementById(inputId);
     const list = document.getElementById(listId);
     let highlightIndex = -1;
+    let mouseIsDown = false;
 
-    input.addEventListener('input', () => {
+    function doSearch() {
         const q = input.value.trim().toLowerCase();
-        if (q.length < 2) { list.classList.remove('open'); return; }
+        if (q.length < 1) { list.classList.remove('open'); return; }
 
-        const matches = UK_STATIONS.filter(s =>
-            s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q)
-        ).slice(0, 12);
+        // Match groups and stations — prioritise groups + starts-with matches
+        const startsWithGroups = STATION_GROUPS.filter(s => s.name.toLowerCase().startsWith(q));
+        const startsWithStations = UK_STATIONS.filter(s =>
+            s.name.toLowerCase().startsWith(q) || s.code.toLowerCase() === q
+        );
+        const containsStations = UK_STATIONS.filter(s =>
+            !s.name.toLowerCase().startsWith(q) && s.code.toLowerCase() !== q &&
+            (s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q))
+        );
+
+        const matches = [...startsWithGroups, ...startsWithStations, ...containsStations].slice(0, 15);
 
         if (matches.length === 0) { list.classList.remove('open'); return; }
 
         highlightIndex = -1;
-        list.innerHTML = matches.map((s, i) =>
-            `<div class="autocomplete-item" data-index="${i}" data-code="${s.code}" data-name="${s.name}">
-                <span>${highlightMatch(s.name, q)}</span>
-                <span class="station-code">${s.code}</span>
-            </div>`
-        ).join('');
+        list.innerHTML = matches.map((s, i) => {
+            const isGroup = s.group;
+            const badge = isGroup
+                ? `<span class="station-code" style="background:var(--accent-glow);color:var(--accent-light);">GROUP</span>`
+                : `<span class="station-code">${s.code}</span>`;
+            const icon = isGroup ? '🏙️ ' : '';
+            return `<div class="autocomplete-item ${isGroup ? 'group-item' : ''}" data-index="${i}" data-code="${s.code}" data-name="${s.name}">
+                <span>${icon}${highlightMatch(s.name, q)}</span>
+                ${badge}
+            </div>`;
+        }).join('');
 
         list.classList.add('open');
+    }
 
-        list.querySelectorAll('.autocomplete-item').forEach(item => {
-            item.addEventListener('click', () => {
-                input.value = item.dataset.name;
-                setFn({ name: item.dataset.name, code: item.dataset.code });
-                list.classList.remove('open');
-            });
-        });
+    // Use mousedown instead of click — fires before blur
+    list.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // prevent blur from firing
+        const item = e.target.closest('.autocomplete-item');
+        if (item) {
+            input.value = item.dataset.name;
+            setFn({ name: item.dataset.name, code: item.dataset.code });
+            list.classList.remove('open');
+        }
     });
+
+    // Touch support
+    list.addEventListener('touchstart', (e) => {
+        const item = e.target.closest('.autocomplete-item');
+        if (item) {
+            e.preventDefault();
+            input.value = item.dataset.name;
+            setFn({ name: item.dataset.name, code: item.dataset.code });
+            list.classList.remove('open');
+        }
+    });
+
+    input.addEventListener('input', doSearch);
 
     input.addEventListener('keydown', (e) => {
         const items = list.querySelectorAll('.autocomplete-item');
@@ -812,20 +872,26 @@ function setupAutocomplete(inputId, listId, setFn) {
             e.preventDefault();
             highlightIndex = Math.max(highlightIndex - 1, 0);
             updateHighlight(items, highlightIndex);
-        } else if (e.key === 'Enter' && highlightIndex >= 0) {
+        } else if (e.key === 'Enter') {
             e.preventDefault();
-            items[highlightIndex].click();
+            if (highlightIndex >= 0) {
+                const item = items[highlightIndex];
+                input.value = item.dataset.name;
+                setFn({ name: item.dataset.name, code: item.dataset.code });
+                list.classList.remove('open');
+            }
         } else if (e.key === 'Escape') {
             list.classList.remove('open');
         }
     });
 
     input.addEventListener('blur', () => {
-        setTimeout(() => list.classList.remove('open'), 200);
+        // Delay to allow mousedown/touchstart to fire first
+        setTimeout(() => list.classList.remove('open'), 300);
     });
 
     input.addEventListener('focus', () => {
-        if (input.value.length >= 2) input.dispatchEvent(new Event('input'));
+        if (input.value.length >= 1) doSearch();
     });
 }
 
