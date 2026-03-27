@@ -33,7 +33,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* Tabs */
         .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
 
         .tab {
@@ -53,7 +52,209 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Route Cards */
+        /* Search Panel */
+        .search-panel {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .search-panel h2 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .search-field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
+        .search-field label { font-size: 0.8rem; color: #8892b0; font-weight: 600; }
+
+        .search-field select,
+        .search-field input {
+            padding: 10px 14px;
+            background: #0f0f1a;
+            border: 1px solid #2a2a4a;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        .search-field select:focus,
+        .search-field input:focus { border-color: #3b82f6; outline: none; }
+
+        .search-btn {
+            padding: 10px 28px;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover { background: #2563eb; }
+
+        /* Results */
+        .results-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .results-section.visible { display: block; }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .results-header h3 { font-size: 1.1rem; color: #fff; }
+
+        .results-header .route-badge {
+            padding: 6px 14px;
+            background: #3b82f622;
+            color: #60a5fa;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .price-card.highlight {
+            border-color: #4ade80;
+            background: #16253422;
+        }
+
+        .price-card .fare-type {
+            font-size: 0.8rem;
+            color: #8892b0;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-card .fare-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .price-cheap { color: #4ade80; }
+        .price-mid { color: #fbbf24; }
+        .price-expensive { color: #f87171; }
+
+        .price-card .fare-note {
+            font-size: 0.78rem;
+            color: #555;
+        }
+
+        .price-card .fare-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Booking Links */
+        .booking-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .booking-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: all 0.2s;
+        }
+
+        .booking-link:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            background: #1e2a4a;
+        }
+
+        .booking-link .bl-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .booking-link .bl-info { flex: 1; }
+        .booking-link .bl-name { font-weight: 600; font-size: 0.95rem; }
+        .booking-link .bl-desc { font-size: 0.78rem; color: #8892b0; margin-top: 2px; }
+
+        .booking-link .bl-arrow {
+            font-size: 1.2rem;
+            color: #3b82f6;
+        }
+
+        .booking-link.primary {
+            border-color: #3b82f6;
+            background: #1e2a4a;
+        }
+
+        /* Tip banner */
+        .tip-banner {
+            background: rgba(74, 222, 128, 0.08);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 0.88rem;
+            color: #4ade80;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tip-banner .tip-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+        /* Route info cards */
         .route-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -104,9 +305,15 @@
         .price-row:last-child { border-bottom: none; }
         .price-label { font-size: 0.85rem; color: #8892b0; }
         .price-value { font-weight: 600; }
-        .price-cheap { color: #4ade80; }
-        .price-mid { color: #fbbf24; }
-        .price-expensive { color: #f87171; }
+
+        .operator-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
 
         .best-time {
             margin-top: 12px;
@@ -120,16 +327,7 @@
 
         .best-time strong { color: #4ade80; }
 
-        .operator-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-
-        /* Time grid */
+        /* Time bars */
         .time-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -174,7 +372,6 @@
             background: #2a2a4a;
             border-radius: 6px;
             overflow: hidden;
-            position: relative;
         }
 
         .time-bar-fill {
@@ -186,7 +383,6 @@
             font-size: 0.75rem;
             font-weight: 600;
             color: #fff;
-            transition: width 0.5s ease;
         }
 
         .time-bar-fill.cheap { background: linear-gradient(90deg, #166534, #22c55e); }
@@ -316,7 +512,7 @@
         }
 
         .tip-card li::before {
-            content: '→';
+            content: '\2192';
             position: absolute;
             left: 0;
             color: #4ade80;
@@ -373,31 +569,96 @@
         .link-label { font-weight: 500; }
         .link-desc { font-size: 0.78rem; color: #555; }
 
+        /* Loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #3b82f644;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 600px) {
             header h1 { font-size: 1.4rem; }
-            .route-grid, .tips-grid, .links-grid, .time-grid { grid-template-columns: 1fr; }
+            .route-grid, .tips-grid, .links-grid, .time-grid, .price-cards, .booking-links { grid-template-columns: 1fr; }
             .calendar-legend { margin-left: 0; }
-            .calendar-controls { flex-direction: column; align-items: flex-start; }
+            .calendar-controls, .search-row { flex-direction: column; align-items: stretch; }
+            .search-btn { width: 100%; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>UK Train Deal Finder</h1>
-        <p>London ↔ Canterbury &amp; Chelmsford — find the cheapest fares</p>
+        <p>London ↔ Canterbury &amp; Chelmsford — find the cheapest fares live</p>
     </header>
 
     <div class="container">
         <div class="tabs">
-            <div class="tab active" data-tab="routes">Routes & Prices</div>
-            <div class="tab" data-tab="timetable">Best Times to Travel</div>
+            <div class="tab active" data-tab="search">Search Prices</div>
+            <div class="tab" data-tab="routes">Route Info</div>
+            <div class="tab" data-tab="timetable">Best Times</div>
             <div class="tab" data-tab="calendar">Price Calendar</div>
             <div class="tab" data-tab="tips">Booking Tips</div>
             <div class="tab" data-tab="links">Links</div>
         </div>
 
+        <!-- SEARCH TAB -->
+        <div class="tab-content active" id="search">
+            <div class="search-panel">
+                <h2>Find Live Train Prices</h2>
+                <div class="search-row">
+                    <div class="search-field">
+                        <label>Route</label>
+                        <select id="searchRoute">
+                            <option value="lon-cant">London → Canterbury</option>
+                            <option value="cant-lon">Canterbury → London</option>
+                            <option value="lon-chel">London → Chelmsford</option>
+                            <option value="chel-lon">Chelmsford → London</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label>Date</label>
+                        <input type="date" id="searchDate">
+                    </div>
+                    <div class="search-field">
+                        <label>Time</label>
+                        <select id="searchTime">
+                            <option value="0600">06:00</option>
+                            <option value="0700">07:00</option>
+                            <option value="0800">08:00</option>
+                            <option value="0900">09:00</option>
+                            <option value="1000" selected>10:00</option>
+                            <option value="1100">11:00</option>
+                            <option value="1200">12:00</option>
+                            <option value="1300">13:00</option>
+                            <option value="1400">14:00</option>
+                            <option value="1500">15:00</option>
+                            <option value="1600">16:00</option>
+                            <option value="1700">17:00</option>
+                            <option value="1800">18:00</option>
+                            <option value="1900">19:00</option>
+                            <option value="2000">20:00</option>
+                            <option value="2100">21:00</option>
+                        </select>
+                    </div>
+                    <button class="search-btn" id="searchBtn">Search Prices</button>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection">
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+
         <!-- ROUTES TAB -->
-        <div class="tab-content active" id="routes">
+        <div class="tab-content" id="routes">
             <div class="route-grid" id="routeGrid"></div>
         </div>
 
@@ -435,96 +696,142 @@
     </div>
 
 <script>
-// ── Route Data ──
-const routes = [
-    {
-        name: "London → Canterbury",
-        from: "London St Pancras / Victoria",
-        to: "Canterbury West / East",
-        icon: "🏛️",
-        color: "#8b5cf6",
+// ── Route Configs ──
+const routeConfigs = {
+    "lon-cant": {
+        label: "London → Canterbury",
+        from: "London",
+        fromStation: "London St Pancras International",
+        fromCode: "STP",
+        to: "Canterbury",
+        toStation: "Canterbury West",
+        toCode: "CBW",
         operator: "Southeastern",
+        operatorUrl: "https://www.southeasternrailway.co.uk/",
         operatorColor: "#0072bc",
         duration: "55 min – 1h 30m",
-        advance: "£10 – £18",
-        offPeak: "£22.40",
-        anytime: "£34.90",
-        season: "£4,316/yr",
-        bestTip: "Advance singles from £10 if booked 2-4 weeks ahead via Southeastern",
-        advanceNum: 14,
-        offPeakNum: 22.4,
-        anytimeNum: 34.9
+        advance: { min: 10, max: 18 },
+        offPeak: 22.40,
+        anytime: 34.90,
+        season: "£4,316/yr"
     },
-    {
-        name: "Canterbury → London",
-        from: "Canterbury West / East",
-        to: "London St Pancras / Victoria",
-        icon: "🏛️",
-        color: "#a78bfa",
+    "cant-lon": {
+        label: "Canterbury → London",
+        from: "Canterbury",
+        fromStation: "Canterbury West",
+        fromCode: "CBW",
+        to: "London",
+        toStation: "London St Pancras International",
+        toCode: "STP",
         operator: "Southeastern",
+        operatorUrl: "https://www.southeasternrailway.co.uk/",
         operatorColor: "#0072bc",
         duration: "55 min – 1h 30m",
-        advance: "£10 – £18",
-        offPeak: "£22.40",
-        anytime: "£34.90",
-        season: "£4,316/yr",
-        bestTip: "Same prices as outbound — book return as 2 singles for flexibility",
-        advanceNum: 14,
-        offPeakNum: 22.4,
-        anytimeNum: 34.9
+        advance: { min: 10, max: 18 },
+        offPeak: 22.40,
+        anytime: 34.90,
+        season: "£4,316/yr"
     },
-    {
-        name: "London → Chelmsford",
-        from: "London Liverpool Street",
+    "lon-chel": {
+        label: "London → Chelmsford",
+        from: "London",
+        fromStation: "London Liverpool Street",
+        fromCode: "LST",
         to: "Chelmsford",
-        icon: "🚂",
-        color: "#3b82f6",
+        toStation: "Chelmsford",
+        toCode: "CHM",
         operator: "Greater Anglia",
+        operatorUrl: "https://www.greateranglia.co.uk/",
         operatorColor: "#e31837",
         duration: "30 – 40 min",
-        advance: "£5 – £12",
-        offPeak: "£14.80",
-        anytime: "£23.60",
-        season: "£3,500/yr",
-        bestTip: "Advance singles from £5 — one of the cheapest London commuter routes",
-        advanceNum: 8.5,
-        offPeakNum: 14.8,
-        anytimeNum: 23.6
+        advance: { min: 5, max: 12 },
+        offPeak: 14.80,
+        anytime: 23.60,
+        season: "£3,500/yr"
     },
-    {
-        name: "Chelmsford → London",
+    "chel-lon": {
+        label: "Chelmsford → London",
         from: "Chelmsford",
-        to: "London Liverpool Street",
-        icon: "🚂",
-        color: "#60a5fa",
+        fromStation: "Chelmsford",
+        fromCode: "CHM",
+        to: "London",
+        toStation: "London Liverpool Street",
+        toCode: "LST",
         operator: "Greater Anglia",
+        operatorUrl: "https://www.greateranglia.co.uk/",
         operatorColor: "#e31837",
         duration: "30 – 40 min",
-        advance: "£5 – £12",
-        offPeak: "£14.80",
-        anytime: "£23.60",
-        season: "£3,500/yr",
-        bestTip: "Same prices as outbound — book 2 singles instead of a return for best deals",
-        advanceNum: 8.5,
-        offPeakNum: 14.8,
-        anytimeNum: 23.6
+        advance: { min: 5, max: 12 },
+        offPeak: 14.80,
+        anytime: 23.60,
+        season: "£3,500/yr"
     }
-];
+};
 
-// ── Time-of-day pricing ──
-const timeSlots = [
-    { label: "06:00–07:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "07:00–09:30", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "09:30–10:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
-    { label: "10:00–15:30", canterbury: { price: "£15–£18", level: "cheap" }, chelmsford: { price: "£8–£12", level: "cheap" } },
-    { label: "15:30–18:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "18:00–19:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
-    { label: "19:00–23:00", canterbury: { price: "£15–£18", level: "cheap" }, chelmsford: { price: "£8–£12", level: "cheap" } },
-];
+// ── URL Builders ──
+function buildNationalRailUrl(route, date, time) {
+    const r = routeConfigs[route];
+    const d = new Date(date);
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yy = String(d.getFullYear()).slice(2);
+    return `https://ojp.nationalrail.co.uk/service/timesandfares/${r.fromCode}/${r.toCode}/${dd}${mm}${yy}/${time}/dep`;
+}
 
-const barWidths = { cheap: 35, medium: 60, expensive: 95 };
+function buildTrainlineUrl(route, date, time) {
+    const r = routeConfigs[route];
+    const hour = time.slice(0, 2);
+    const min = time.slice(2);
+    const dateStr = `${date}T${hour}:${min}:00`;
+    return `https://www.thetrainline.com/book/results?journeySearchType=single&origin=${encodeURIComponent(r.fromStation)}&destination=${encodeURIComponent(r.toStation)}&outwardDate=${encodeURIComponent(dateStr)}&outwardDateType=departAfter&selectedTab=train&lang=en&adult=1`;
+}
 
-// ── School holidays & bank holidays ──
+function buildSplitMyFareUrl(route, date) {
+    const r = routeConfigs[route];
+    return `https://www.splitmyfare.co.uk/?from=${r.fromCode}&to=${r.toCode}&date=${date}`;
+}
+
+function buildTrainPalUrl(route, date, time) {
+    const r = routeConfigs[route];
+    const d = new Date(date);
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `https://www.mytrainpal.com/search?from=${encodeURIComponent(r.fromStation)}&to=${encodeURIComponent(r.toStation)}&depart=${yyyy}-${mm}-${dd}&time=${time.slice(0,2)}:${time.slice(2)}`;
+}
+
+// ── Price estimation ──
+function estimatePrices(route, date, time) {
+    const r = routeConfigs[route];
+    const d = new Date(date);
+    const day = d.getDay();
+    const hour = parseInt(time.slice(0, 2));
+    const isWeekend = day === 0 || day === 6;
+    const isPeak = !isWeekend && ((hour >= 6 && hour < 10) || (hour >= 16 && hour < 19));
+    const isOffPeak = !isPeak;
+    const holiday = isSchoolHoliday(d);
+    const daysAhead = Math.floor((d - new Date()) / (1000 * 60 * 60 * 24));
+
+    let advanceAvailable = daysAhead >= 1;
+    let advanceLikely = daysAhead >= 14;
+    let advancePrice = advanceLikely ? r.advance.min : (advanceAvailable ? r.advance.max : null);
+
+    return {
+        advance: advancePrice ? `£${advancePrice.toFixed(0)}` : null,
+        advanceAvailable,
+        advanceLikely,
+        offPeak: isOffPeak ? `£${r.offPeak.toFixed(2)}` : null,
+        anytime: `£${r.anytime.toFixed(2)}`,
+        isPeak,
+        isOffPeak,
+        isWeekend,
+        holiday,
+        daysAhead,
+        bestDeal: advanceLikely ? `Advance from £${r.advance.min}` : (isOffPeak ? `Off-Peak £${r.offPeak.toFixed(2)}` : `Anytime £${r.anytime.toFixed(2)}`)
+    };
+}
+
+// ── School holidays ──
 const schoolHolidays2026 = [
     { start: new Date(2026, 1, 16), end: new Date(2026, 1, 20), name: "Feb Half-Term" },
     { start: new Date(2026, 2, 30), end: new Date(2026, 3, 13), name: "Easter" },
@@ -540,11 +847,6 @@ const bankHolidays2026 = [
     new Date(2026, 11, 25), new Date(2026, 11, 28)
 ];
 
-const majorEvents2026 = [
-    { date: new Date(2026, 5, 26), name: "Wimbledon starts" },
-    { date: new Date(2026, 7, 28), name: "Notting Hill Carnival" },
-];
-
 function isSchoolHoliday(date) {
     return schoolHolidays2026.find(h => date >= h.start && date <= h.end);
 }
@@ -557,32 +859,180 @@ function isBankHoliday(date) {
     );
 }
 
-function getPriceLevel(date, routeIdx) {
+function getPriceLevel(date, routeKey) {
     const day = date.getDay();
     const isWeekend = day === 0 || day === 6;
     const isFriday = day === 5;
     const holiday = isSchoolHoliday(date);
     const bankHol = isBankHoliday(date);
-    const r = routes[routeIdx] || routes[0];
+    const r = routeConfigs[routeKey];
 
-    if (bankHol) return { level: "peak", label: "Peak day", est: r.anytime };
-    if (holiday && (isWeekend || isFriday)) return { level: "peak", label: "Peak (holiday + weekend)", est: r.anytime };
-    if (holiday) return { level: "expensive", label: "Busy (school holiday)", est: "£" + (r.offPeakNum + 5).toFixed(0) };
-    if (isFriday) return { level: "medium", label: "Friday — busier", est: r.offPeak };
-    if (isWeekend) return { level: "cheap", label: "Weekend off-peak", est: r.offPeak };
-    if (day === 2 || day === 3) return { level: "cheapest", label: "Quietest day — Advance fares available", est: r.advance };
-    return { level: "cheap", label: "Weekday — Advance fares likely", est: r.advance };
+    if (bankHol) return { level: "peak", label: "Peak day", est: `£${r.anytime.toFixed(2)}` };
+    if (holiday && (isWeekend || isFriday)) return { level: "peak", label: "Peak (holiday + weekend)", est: `£${r.anytime.toFixed(2)}` };
+    if (holiday) return { level: "expensive", label: "Busy (school holiday)", est: `£${(r.offPeak + 5).toFixed(0)}` };
+    if (isFriday) return { level: "medium", label: "Friday — busier", est: `£${r.offPeak.toFixed(2)}` };
+    if (isWeekend) return { level: "cheap", label: "Weekend off-peak", est: `£${r.offPeak.toFixed(2)}` };
+    if (day === 2 || day === 3) return { level: "cheapest", label: "Cheapest — Advance fares available", est: `£${r.advance.min}–£${r.advance.max}` };
+    return { level: "cheap", label: "Weekday — Advance fares likely", est: `£${r.advance.min}–£${r.advance.max}` };
 }
 
-// ── Render Routes ──
+// ── Search ──
+function doSearch() {
+    const route = document.getElementById('searchRoute').value;
+    const date = document.getElementById('searchDate').value;
+    const time = document.getElementById('searchTime').value;
+
+    if (!date) { alert('Please select a date'); return; }
+
+    const r = routeConfigs[route];
+    const prices = estimatePrices(route, date, time);
+    const section = document.getElementById('resultsSection');
+    const content = document.getElementById('resultsContent');
+
+    const dateObj = new Date(date);
+    const dateStr = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const timeStr = time.slice(0, 2) + ':' + time.slice(2);
+
+    const nrUrl = buildNationalRailUrl(route, date, time);
+    const tlUrl = buildTrainlineUrl(route, date, time);
+    const smfUrl = buildSplitMyFareUrl(route, date);
+    const tpUrl = buildTrainPalUrl(route, date, time);
+
+    let tipText = '';
+    if (prices.isPeak) {
+        tipText = `This is a <strong>peak time</strong> — fares will be at their highest. Consider travelling after 09:30 or after 19:00 to save up to 50%.`;
+    } else if (prices.advanceLikely) {
+        tipText = `Great timing! Advance fares are likely available at this date range. Book ASAP — cheapest tickets sell out first.`;
+    } else if (prices.advanceAvailable) {
+        tipText = `Advance fares may still be available but could be limited. Off-Peak is guaranteed at ${prices.offPeak}.`;
+    } else {
+        tipText = `This date is very close — Advance fares are likely sold out. You'll get Off-Peak or Anytime walk-up fares.`;
+    }
+
+    if (prices.holiday) {
+        tipText += ` <strong>Note:</strong> This falls during ${prices.holiday.name} — expect busier trains.`;
+    }
+
+    content.innerHTML = `
+        <div class="results-header">
+            <h3>${r.label}</h3>
+            <span class="route-badge">${dateStr} · ${timeStr} · ${r.operator}</span>
+        </div>
+
+        <div class="tip-banner">
+            <span class="tip-icon">💡</span>
+            <div>${tipText}</div>
+        </div>
+
+        <h3 style="font-size:0.95rem; color:#8892b0; margin-bottom:12px;">ESTIMATED FARES</h3>
+        <div class="price-cards">
+            ${prices.advance ? `
+            <div class="price-card ${prices.advanceLikely ? 'highlight' : ''}">
+                <div class="fare-type">Advance</div>
+                <div class="fare-price price-cheap">${prices.advance}</div>
+                <div class="fare-note">Limited availability · specific train only</div>
+                ${prices.advanceLikely ?
+                    '<span class="fare-badge" style="background:#16a34a33;color:#4ade80;">BEST DEAL</span>' :
+                    '<span class="fare-badge" style="background:#f59e0b33;color:#fbbf24;">LIMITED</span>'
+                }
+            </div>` : ''}
+            ${prices.offPeak ? `
+            <div class="price-card ${!prices.advance ? 'highlight' : ''}">
+                <div class="fare-type">Off-Peak</div>
+                <div class="fare-price price-mid">${prices.offPeak}</div>
+                <div class="fare-note">Any off-peak train · flexible</div>
+                ${!prices.advance ? '<span class="fare-badge" style="background:#3b82f633;color:#60a5fa;">AVAILABLE</span>' : ''}
+            </div>` : ''}
+            <div class="price-card">
+                <div class="fare-type">Anytime</div>
+                <div class="fare-price price-expensive">${prices.anytime}</div>
+                <div class="fare-note">Any train · fully flexible · walk-up</div>
+            </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; color:#8892b0; margin-bottom:12px;">CHECK LIVE PRICES & BOOK</h3>
+        <div class="booking-links">
+            <a href="${nrUrl}" target="_blank" rel="noopener" class="booking-link primary">
+                <div class="bl-icon" style="background:#1d355722;color:#1d3557">🇬🇧</div>
+                <div class="bl-info">
+                    <div class="bl-name">National Rail</div>
+                    <div class="bl-desc">Official live prices — see all trains & fares</div>
+                </div>
+                <div class="bl-arrow">→</div>
+            </a>
+            <a href="${tlUrl}" target="_blank" rel="noopener" class="booking-link primary">
+                <div class="bl-icon" style="background:#03a9f422;color:#03a9f4">🚆</div>
+                <div class="bl-info">
+                    <div class="bl-name">Trainline</div>
+                    <div class="bl-desc">Compare prices · split tickets · buy instantly</div>
+                </div>
+                <div class="bl-arrow">→</div>
+            </a>
+            <a href="${r.operatorUrl}" target="_blank" rel="noopener" class="booking-link">
+                <div class="bl-icon" style="background:${r.operatorColor}22;color:${r.operatorColor}">🎫</div>
+                <div class="bl-info">
+                    <div class="bl-name">${r.operator}</div>
+                    <div class="bl-desc">Book direct with the operator — sometimes exclusive deals</div>
+                </div>
+                <div class="bl-arrow">→</div>
+            </a>
+            <a href="${smfUrl}" target="_blank" rel="noopener" class="booking-link">
+                <div class="bl-icon" style="background:#16a34a22;color:#16a34a">✂️</div>
+                <div class="bl-info">
+                    <div class="bl-name">Split My Fare</div>
+                    <div class="bl-desc">Find cheaper split-ticket combos for this route</div>
+                </div>
+                <div class="bl-arrow">→</div>
+            </a>
+            <a href="${tpUrl}" target="_blank" rel="noopener" class="booking-link">
+                <div class="bl-icon" style="background:#7c3aed22;color:#7c3aed">🤖</div>
+                <div class="bl-info">
+                    <div class="bl-name">TrainPal</div>
+                    <div class="bl-desc">AI-powered cheap ticket finder</div>
+                </div>
+                <div class="bl-arrow">→</div>
+            </a>
+        </div>
+
+        <div class="tip-banner" style="border-color:#3b82f633; background:#3b82f608; color:#60a5fa;">
+            <span class="tip-icon">💳</span>
+            <div>Got a <strong>Railcard</strong>? Prices above don't include railcard discounts. A 16-25 or Network Railcard gives you 1/3 off — apply it at checkout on any booking site above.</div>
+        </div>
+    `;
+
+    section.classList.add('visible');
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Init search defaults ──
+function initSearch() {
+    const dateInput = document.getElementById('searchDate');
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 14);
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+    dateInput.min = new Date().toISOString().split('T')[0];
+
+    document.getElementById('searchBtn').addEventListener('click', doSearch);
+}
+
+// ── Route Info ──
+const routesList = [
+    { key: "lon-cant", icon: "🏛️", color: "#8b5cf6" },
+    { key: "cant-lon", icon: "🏛️", color: "#a78bfa" },
+    { key: "lon-chel", icon: "🚂", color: "#3b82f6" },
+    { key: "chel-lon", icon: "🚂", color: "#60a5fa" }
+];
+
 function renderRoutes() {
-    document.getElementById('routeGrid').innerHTML = routes.map(r => `
+    document.getElementById('routeGrid').innerHTML = routesList.map(rl => {
+        const r = routeConfigs[rl.key];
+        return `
         <div class="route-card">
             <div class="route-header">
-                <div class="route-icon" style="background:${r.color}22; color:${r.color}">${r.icon}</div>
+                <div class="route-icon" style="background:${rl.color}22; color:${rl.color}">${rl.icon}</div>
                 <div>
-                    <h3>${r.name}</h3>
-                    <div class="route-sub">${r.from} → ${r.to} · ${r.duration}</div>
+                    <h3>${r.label}</h3>
+                    <div class="route-sub">${r.fromStation} → ${r.toStation} · ${r.duration}</div>
                 </div>
             </div>
             <div class="route-body">
@@ -590,15 +1040,15 @@ function renderRoutes() {
                 <div style="margin-top:12px">
                     <div class="price-row">
                         <span class="price-label">Advance (book early)</span>
-                        <span class="price-value price-cheap">${r.advance}</span>
+                        <span class="price-value price-cheap">£${r.advance.min} – £${r.advance.max}</span>
                     </div>
                     <div class="price-row">
                         <span class="price-label">Off-Peak</span>
-                        <span class="price-value price-mid">${r.offPeak}</span>
+                        <span class="price-value price-mid">£${r.offPeak.toFixed(2)}</span>
                     </div>
                     <div class="price-row">
                         <span class="price-label">Anytime (walk-up)</span>
-                        <span class="price-value price-expensive">${r.anytime}</span>
+                        <span class="price-value price-expensive">£${r.anytime.toFixed(2)}</span>
                     </div>
                     <div class="price-row">
                         <span class="price-label">Season ticket</span>
@@ -606,22 +1056,31 @@ function renderRoutes() {
                     </div>
                 </div>
                 <div class="best-time">
-                    <strong>Best deal:</strong> ${r.bestTip}
+                    <strong>Best deal:</strong> Book Advance 2-4 weeks ahead for the lowest fares
                 </div>
             </div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 }
 
-// ── Render Time Grid ──
+// ── Time Grid ──
+const timeSlots = [
+    { label: "06:00–07:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
+    { label: "07:00–09:30", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
+    { label: "09:30–10:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
+    { label: "10:00–15:30", canterbury: { price: "£15–18", level: "cheap" }, chelmsford: { price: "£8–12", level: "cheap" } },
+    { label: "15:30–18:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
+    { label: "18:00–19:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
+    { label: "19:00–23:00", canterbury: { price: "£15–18", level: "cheap" }, chelmsford: { price: "£8–12", level: "cheap" } },
+];
+
+const barWidths = { cheap: 35, medium: 60, expensive: 95 };
+
 function renderTimeGrid() {
-    const grid = document.getElementById('timeGrid');
-    const routeGroups = [
+    document.getElementById('timeGrid').innerHTML = [
         { title: "🏛️ London ↔ Canterbury", key: "canterbury" },
         { title: "🚂 London ↔ Chelmsford", key: "chelmsford" }
-    ];
-
-    grid.innerHTML = routeGroups.map(rg => `
+    ].map(rg => `
         <div class="time-card">
             <h3>${rg.title}</h3>
             ${timeSlots.map(s => {
@@ -635,16 +1094,16 @@ function renderTimeGrid() {
                 </div>`;
             }).join('')}
             <div style="margin-top:12px; font-size:0.8rem; color:#8892b0;">
-                <strong style="color:#4ade80;">Sweet spot:</strong> Travel between 10:00–15:30 or after 19:00 for cheapest fares
+                <strong style="color:#4ade80;">Sweet spot:</strong> Travel 10:00–15:30 or after 19:00
             </div>
         </div>
     `).join('');
 }
 
-// ── Render Calendar ──
+// ── Calendar ──
 function renderCalendar() {
     const month = parseInt(document.getElementById('calMonth').value);
-    const routeIdx = parseInt(document.getElementById('calRoute').value);
+    const routeKey = document.getElementById('calRoute').value;
     const year = 2026;
     const grid = document.getElementById('calGrid');
 
@@ -659,8 +1118,7 @@ function renderCalendar() {
     });
 
     let dayNum = 1;
-    const totalCells = startDow + lastDay.getDate();
-    const rows = Math.ceil(totalCells / 7);
+    const rows = Math.ceil((startDow + lastDay.getDate()) / 7);
 
     for (let w = 0; w < rows; w++) {
         html += `<div class="cal-week-label">W${w+1}</div>`;
@@ -670,17 +1128,16 @@ function renderCalendar() {
                 html += '<div class="cal-day empty"></div>';
             } else {
                 const date = new Date(year, month, dayNum);
-                const price = getPriceLevel(date, routeIdx);
+                const price = getPriceLevel(date, routeKey);
                 const holiday = isSchoolHoliday(date);
                 const bankHol = isBankHoliday(date);
                 const isToday = date.toDateString() === today.toDateString();
 
-                let tooltip = `${date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} — ${price.label}`;
-                tooltip += ` · Est: ${price.est}`;
+                let tooltip = `${date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} — ${price.label} · Est: ${price.est}`;
                 if (holiday) tooltip += ` (${holiday.name})`;
                 if (bankHol) tooltip += ' (Bank Holiday)';
 
-                html += `<div class="cal-day ${price.level}${isToday ? ' today' : ''}">
+                html += `<div class="cal-day ${price.level}${isToday ? ' today' : ''}" onclick="calDayClick(${year},${month},${dayNum},'${routeKey}')">
                     ${dayNum}
                     <div class="cal-tooltip">${tooltip}</div>
                 </div>`;
@@ -688,8 +1145,15 @@ function renderCalendar() {
             }
         }
     }
-
     grid.innerHTML = html;
+}
+
+function calDayClick(year, month, day, routeKey) {
+    const date = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    document.getElementById('searchRoute').value = routeKey;
+    document.getElementById('searchDate').value = date;
+    document.querySelectorAll('.tab')[0].click();
+    doSearch();
 }
 
 function initCalendar() {
@@ -702,8 +1166,8 @@ function initCalendar() {
         `<option value="${i}" ${i === now.getMonth() ? 'selected' : ''}>${m} 2026</option>`
     ).join('');
 
-    routeSelect.innerHTML = routes.map((r, i) =>
-        `<option value="${i}">${r.icon} ${r.name}</option>`
+    routeSelect.innerHTML = Object.entries(routeConfigs).map(([k, r]) =>
+        `<option value="${k}">${r.label}</option>`
     ).join('');
 
     monthSelect.addEventListener('change', renderCalendar);
@@ -711,7 +1175,7 @@ function initCalendar() {
     renderCalendar();
 }
 
-// ── Render Tips ──
+// ── Tips ──
 function renderTips() {
     document.getElementById('tipsGrid').innerHTML = `
         <div class="tip-card">
@@ -726,10 +1190,10 @@ function renderTips() {
         <div class="tip-card">
             <h3>⏰ Peak vs Off-Peak</h3>
             <ul>
-                <li><strong>Peak:</strong> Mon–Fri departing London 06:00–09:30 & 15:30–18:00</li>
+                <li><strong>Peak:</strong> Mon–Fri departing 06:00–09:30 & 16:00–19:00</li>
                 <li><strong>Off-Peak:</strong> After 09:30, weekends, bank holidays</li>
-                <li><strong>Super Off-Peak:</strong> 10:00–15:30 weekdays (cheapest walk-up)</li>
-                <li>Leaving 1 train later can save £10–£20</li>
+                <li><strong>Super Off-Peak:</strong> 10:00–15:30 weekdays (cheapest)</li>
+                <li>One train later can save £10–£20</li>
             </ul>
         </div>
         <div class="tip-card">
@@ -746,79 +1210,79 @@ function renderTips() {
             <ul>
                 <li>Book 2 singles instead of a return — often cheaper</li>
                 <li>Split tickets at intermediate stations for big savings</li>
-                <li>Use Trainline or Split My Fare to find split combos</li>
+                <li>Use Split My Fare or TrainPal to find combos</li>
                 <li>GroupSave: 3-9 people get 1/3 off off-peak</li>
             </ul>
         </div>
         <div class="tip-card">
-            <h3>🚂 Canterbury Route Tips</h3>
+            <h3>🏛️ Canterbury Route</h3>
             <ul>
                 <li>High-speed from St Pancras is ~55 min (pricier)</li>
                 <li>Slower via Victoria is ~1h 30m but cheaper off-peak</li>
                 <li>Canterbury West = closer to city centre</li>
-                <li>Southeastern runs both routes — check both</li>
+                <li>Southeastern runs both routes</li>
             </ul>
         </div>
         <div class="tip-card">
-            <h3>🚂 Chelmsford Route Tips</h3>
+            <h3>🚂 Chelmsford Route</h3>
             <ul>
                 <li>Direct from Liverpool Street — only 30-35 min</li>
                 <li>Frequent service (every 10-15 min at peak)</li>
-                <li>Greater Anglia often has flash sales — follow on social media</li>
+                <li>Greater Anglia often has flash sales</li>
                 <li>Oyster/contactless NOT valid — you need a ticket</li>
             </ul>
         </div>
     `;
 }
 
-// ── Render Links ──
-const linkGroups = [
-    {
-        title: "Book Tickets",
-        links: [
-            { label: "Southeastern Railway", desc: "London ↔ Canterbury direct", url: "https://www.southeasternrailway.co.uk/", icon: "🔵", color: "#0072bc" },
-            { label: "Greater Anglia", desc: "London ↔ Chelmsford direct", url: "https://www.greateranglia.co.uk/", icon: "🔴", color: "#e31837" },
-            { label: "Trainline", desc: "Compare all operators + split tickets", url: "https://www.thetrainline.com/", icon: "🚆", color: "#03a9f4" },
-            { label: "National Rail", desc: "Official journey planner & fares", url: "https://www.nationalrail.co.uk/", icon: "🇬🇧", color: "#1d3557" }
-        ]
-    },
-    {
-        title: "Fare Splitters & Savers",
-        links: [
-            { label: "Split My Fare", desc: "Find cheaper split-ticket combos", url: "https://www.splitmyfare.co.uk/", icon: "✂️", color: "#16a34a" },
-            { label: "TrainPal", desc: "AI-powered cheap ticket finder", url: "https://www.mytrainpal.com/", icon: "🤖", color: "#7c3aed" },
-            { label: "RailSmartr", desc: "Split ticketing tool", url: "https://www.railsmartr.com/", icon: "🧠", color: "#f59e0b" }
-        ]
-    },
-    {
-        title: "Railcards",
-        links: [
-            { label: "16-25 Railcard", desc: "1/3 off for young adults", url: "https://www.16-25railcard.co.uk/", icon: "🎓", color: "#8b5cf6" },
-            { label: "Two Together Railcard", desc: "1/3 off when travelling as a pair", url: "https://www.twotogether-railcard.co.uk/", icon: "👥", color: "#ec4899" },
-            { label: "Network Railcard", desc: "1/3 off off-peak in SE England", url: "https://www.network-railcard.co.uk/", icon: "🗺️", color: "#0891b2" },
-            { label: "All Railcards", desc: "See every railcard available", url: "https://www.railcard.co.uk/", icon: "💳", color: "#3b82f6" }
-        ]
-    },
-    {
-        title: "Live Info & Delays",
-        links: [
-            { label: "National Rail Live Departures", desc: "Real-time train status", url: "https://www.nationalrail.co.uk/live-trains/departures/", icon: "📡", color: "#ef4444" },
-            { label: "Southeastern Live", desc: "Canterbury route live info", url: "https://www.southeasternrailway.co.uk/travel-information/live-travel-information", icon: "📊", color: "#0072bc" },
-            { label: "Greater Anglia Live", desc: "Chelmsford route live info", url: "https://www.greateranglia.co.uk/travel-information/live-departure-boards", icon: "📊", color: "#e31837" },
-            { label: "Delay Repay", desc: "Claim refunds for late trains", url: "https://www.nationalrail.co.uk/delay-repay/", icon: "💰", color: "#16a34a" }
-        ]
-    },
-    {
-        title: "Planning & Deals",
-        links: [
-            { label: "Days Out Guide", desc: "2-for-1 deals with train tickets", url: "https://www.daysoutguide.co.uk/", icon: "🎟️", color: "#dc2626" },
-            { label: "Railcard + Season Calc", desc: "Check if a season ticket is worth it", url: "https://www.nationalrail.co.uk/tickets-railcards-and-டoffers/season-tickets/", icon: "🧮", color: "#f59e0b" },
-            { label: "Seat61", desc: "Independent train travel guide", url: "https://www.seat61.com/UK-train-travel.htm", icon: "💺", color: "#7c3aed" }
-        ]
-    }
-];
-
+// ── Links ──
 function renderLinks() {
+    const linkGroups = [
+        {
+            title: "Book Tickets",
+            links: [
+                { label: "National Rail", desc: "Official journey planner & live fares", url: "https://www.nationalrail.co.uk/", icon: "🇬🇧", color: "#1d3557" },
+                { label: "Trainline", desc: "Compare all operators + split tickets", url: "https://www.thetrainline.com/", icon: "🚆", color: "#03a9f4" },
+                { label: "Southeastern Railway", desc: "London ↔ Canterbury direct", url: "https://www.southeasternrailway.co.uk/", icon: "🔵", color: "#0072bc" },
+                { label: "Greater Anglia", desc: "London ↔ Chelmsford direct", url: "https://www.greateranglia.co.uk/", icon: "🔴", color: "#e31837" }
+            ]
+        },
+        {
+            title: "Fare Splitters & Savers",
+            links: [
+                { label: "Split My Fare", desc: "Find cheaper split-ticket combos", url: "https://www.splitmyfare.co.uk/", icon: "✂️", color: "#16a34a" },
+                { label: "TrainPal", desc: "AI-powered cheap ticket finder", url: "https://www.mytrainpal.com/", icon: "🤖", color: "#7c3aed" },
+                { label: "RailSmartr", desc: "Split ticketing tool", url: "https://www.railsmartr.com/", icon: "🧠", color: "#f59e0b" }
+            ]
+        },
+        {
+            title: "Railcards",
+            links: [
+                { label: "16-25 Railcard", desc: "1/3 off for young adults", url: "https://www.16-25railcard.co.uk/", icon: "🎓", color: "#8b5cf6" },
+                { label: "Two Together Railcard", desc: "1/3 off travelling as a pair", url: "https://www.twotogether-railcard.co.uk/", icon: "👥", color: "#ec4899" },
+                { label: "Network Railcard", desc: "1/3 off off-peak in SE England", url: "https://www.network-railcard.co.uk/", icon: "🗺️", color: "#0891b2" },
+                { label: "All Railcards", desc: "See every railcard available", url: "https://www.railcard.co.uk/", icon: "💳", color: "#3b82f6" }
+            ]
+        },
+        {
+            title: "Live Info & Delays",
+            links: [
+                { label: "National Rail Live", desc: "Real-time departures", url: "https://www.nationalrail.co.uk/live-trains/departures/", icon: "📡", color: "#ef4444" },
+                { label: "Southeastern Live", desc: "Canterbury route status", url: "https://www.southeasternrailway.co.uk/travel-information/live-travel-information", icon: "📊", color: "#0072bc" },
+                { label: "Greater Anglia Live", desc: "Chelmsford route status", url: "https://www.greateranglia.co.uk/travel-information/live-departure-boards", icon: "📊", color: "#e31837" },
+                { label: "Delay Repay", desc: "Claim refunds for late trains", url: "https://www.nationalrail.co.uk/delay-repay/", icon: "💰", color: "#16a34a" }
+            ]
+        },
+        {
+            title: "Deals & Promos",
+            links: [
+                { label: "Days Out Guide", desc: "2-for-1 attractions with train tickets", url: "https://www.daysoutguide.co.uk/", icon: "🎟️", color: "#dc2626" },
+                { label: "Seat61", desc: "Independent train travel guide", url: "https://www.seat61.com/UK-train-travel.htm", icon: "💺", color: "#7c3aed" },
+                { label: "Money Saving Expert – Trains", desc: "Latest tricks & deals", url: "https://www.moneysavingexpert.com/travel/cheap-train-tickets/", icon: "💷", color: "#f59e0b" }
+            ]
+        }
+    ];
+
     document.getElementById('linksGrid').innerHTML = linkGroups.map(g => `
         <div class="link-group">
             <h3>${g.title}</h3>
@@ -846,6 +1310,7 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 // ── Init ──
+initSearch();
 renderRoutes();
 renderTimeGrid();
 initCalendar();
