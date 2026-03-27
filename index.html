@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UK Train Deal Finder — London ↔ Canterbury & Chelmsford</title>
+    <title>UK Train Deal Finder — Search Any Route</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,119 +41,74 @@
             overflow-x: hidden;
         }
 
-        /* Ambient background glow */
         body::before {
             content: '';
-            position: fixed;
-            top: -40%;
-            left: -20%;
-            width: 80%;
-            height: 80%;
+            position: fixed; top: -40%; left: -20%; width: 80%; height: 80%;
             background: radial-gradient(ellipse, rgba(59,130,246,0.06) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; z-index: 0;
         }
 
         body::after {
             content: '';
-            position: fixed;
-            bottom: -30%;
-            right: -20%;
-            width: 70%;
-            height: 70%;
+            position: fixed; bottom: -30%; right: -20%; width: 70%; height: 70%;
             background: radial-gradient(ellipse, rgba(139,92,246,0.04) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; z-index: 0;
         }
 
-        /* ── Header ── */
         header {
             position: relative;
             padding: 44px 24px 40px;
             text-align: center;
             background: linear-gradient(180deg, #0f172a 0%, var(--bg-deep) 100%);
             border-bottom: 1px solid var(--border);
-            overflow: hidden;
-            z-index: 1;
+            overflow: hidden; z-index: 1;
         }
 
         header::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 60%);
             pointer-events: none;
         }
 
         .header-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 56px; height: 56px; border-radius: 16px;
             background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            font-size: 1.6rem;
-            margin-bottom: 16px;
+            font-size: 1.6rem; margin-bottom: 16px;
             box-shadow: 0 8px 30px rgba(59,130,246,0.3);
         }
 
         header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px;
             background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
+        header p { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
 
-        /* ── Container ── */
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 28px 20px 60px;
+            position: relative; z-index: 1;
+            max-width: 1140px; margin: 0 auto; padding: 28px 20px 60px;
         }
 
-        /* ── Tabs ── */
+        /* Tabs */
         .tabs {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-            background: var(--bg-card);
-            padding: 6px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
+            display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap;
+            background: var(--bg-card); padding: 6px; border-radius: 14px; border: 1px solid var(--border);
         }
 
         .tab {
-            padding: 10px 20px;
-            background: transparent;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: all 0.25s ease;
-            letter-spacing: -0.01em;
+            padding: 10px 20px; background: transparent; border: none; border-radius: 10px;
+            cursor: pointer; font-size: 0.88rem; font-weight: 600;
+            color: var(--text-muted); transition: all 0.25s ease;
         }
 
-        .tab:hover { color: var(--text-secondary); background: rgba(255,255,255,0.04); }
-
+        .tab:hover { color: var(--text-secondary); background: rgba(255,255,255,0.03); }
         .tab.active {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 2px 12px rgba(59,130,246,0.35);
+            background: var(--accent); color: white;
+            box-shadow: 0 4px 16px rgba(59,130,246,0.3);
         }
 
         .tab-content { display: none; animation: fadeIn 0.35s ease; }
@@ -164,650 +119,283 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Card base ── */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-        }
-
-        .card:hover {
-            border-color: var(--border-hover);
-        }
-
-        /* ── Search Panel ── */
+        /* Search Panel */
         .search-panel {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
             margin-bottom: 24px;
-            box-shadow: var(--shadow);
         }
 
         .search-panel h2 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
+            font-size: 1.15rem; font-weight: 700; margin-bottom: 20px;
         }
 
-        .search-row {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            align-items: flex-end;
+        .search-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
         }
 
-        .search-field { display: flex; flex-direction: column; gap: 7px; flex: 1; min-width: 160px; }
+        .search-field { display: flex; flex-direction: column; gap: 6px; }
+        .search-field.full { grid-column: 1 / -1; }
 
         .search-field label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 0.75rem; font-weight: 700; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.08em;
         }
 
-        .search-field select,
-        .search-field input {
-            padding: 12px 14px;
-            background: var(--bg-deep);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .search-field select:focus,
-        .search-field input:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .search-btn {
-            padding: 12px 32px;
-            background: linear-gradient(135deg, var(--accent), #2563eb);
-            color: #fff;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: 0.9rem;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.25s;
-            white-space: nowrap;
-            box-shadow: 0 4px 16px rgba(59,130,246,0.3);
-            letter-spacing: -0.01em;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(59,130,246,0.4);
-        }
-
-        .search-btn:active { transform: translateY(0); }
-
-        /* ── Results ── */
-        .results-section { display: none; margin-top: 20px; }
-        .results-section.visible { display: block; }
-
-        .results-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .results-header h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .results-header .route-badge {
-            padding: 7px 16px;
-            background: var(--accent-glow);
-            color: var(--accent-light);
-            border-radius: 24px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(59,130,246,0.2);
-        }
-
-        .price-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 22px;
-            text-align: center;
-            transition: all 0.25s;
-            box-shadow: var(--shadow);
-        }
-
-        .price-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .price-card.highlight {
-            border-color: var(--green-dim);
-            background: linear-gradient(180deg, rgba(52,211,153,0.06) 0%, var(--bg-card) 100%);
-        }
-
-        .price-card .fare-type {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-        }
-
-        .price-card .fare-price {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            letter-spacing: -0.03em;
-        }
-
-        .price-cheap { color: var(--green); }
-        .price-mid { color: var(--yellow); }
-        .price-expensive { color: var(--red); }
-
-        .price-card .fare-note {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        .price-card .fare-badge {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ── Booking Links ── */
-        .booking-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .booking-link {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.25s;
-            box-shadow: var(--shadow);
-        }
-
-        .booking-link:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .booking-link .bl-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .booking-link .bl-info { flex: 1; }
-        .booking-link .bl-name { font-weight: 700; font-size: 0.92rem; letter-spacing: -0.01em; }
-        .booking-link .bl-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; line-height: 1.3; }
-
-        .booking-link .bl-arrow {
-            font-size: 1.1rem;
-            color: var(--accent);
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.25s;
-        }
-
-        .booking-link:hover .bl-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .booking-link.primary {
-            border-color: rgba(59,130,246,0.3);
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), var(--bg-card));
-        }
-
-        /* ── Tip banner ── */
-        .tip-banner {
-            background: rgba(52, 211, 153, 0.06);
-            border: 1px solid rgba(52, 211, 153, 0.15);
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            font-size: 0.88rem;
-            color: var(--green);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            line-height: 1.5;
-        }
-
-        .tip-banner .tip-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
-
-        /* ── Route cards ── */
-        .route-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
-        }
-
-        .route-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .route-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .route-header {
-            padding: 22px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .route-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .route-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; }
-        .route-header .route-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
-
-        .route-body { padding: 0 22px 22px; }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(30,41,59,0.6);
-        }
-
-        .price-row:last-child { border-bottom: none; }
-        .price-label { font-size: 0.85rem; color: var(--text-secondary); }
-        .price-value { font-weight: 700; letter-spacing: -0.02em; }
-
-        .operator-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.73rem;
-            font-weight: 700;
-            margin-top: 8px;
-            letter-spacing: 0.02em;
-        }
-
-        .best-time {
-            margin-top: 14px;
-            padding: 12px 16px;
-            background: rgba(52, 211, 153, 0.06);
-            border: 1px solid rgba(52, 211, 153, 0.12);
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            color: var(--green);
-            line-height: 1.4;
-        }
-
-        .best-time strong { color: var(--green); }
-
-        /* ── Time bars ── */
-        .time-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .time-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-        }
-
-        .time-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.02em;
-        }
-
-        .time-bar-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .time-bar-label {
-            width: 84px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            text-align: right;
-            flex-shrink: 0;
-            font-weight: 500;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .time-bar-track {
-            flex: 1;
-            height: 28px;
-            background: rgba(30,41,59,0.5);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .time-bar-fill {
-            height: 100%;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            padding-left: 10px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #fff;
-            transition: width 0.6s ease;
-        }
-
-        .time-bar-fill.cheap { background: linear-gradient(90deg, #059669, #34d399); }
-        .time-bar-fill.medium { background: linear-gradient(90deg, #b45309, #f59e0b); }
-        .time-bar-fill.expensive { background: linear-gradient(90deg, #dc2626, #f87171); }
-
-        /* ── Calendar ── */
-        .calendar-controls {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .calendar-controls select {
-            padding: 10px 14px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
+        .search-field input, .search-field select {
+            padding: 12px 14px; background: var(--bg-base);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            color: var(--text-primary); font-size: 0.9rem; font-family: inherit;
             transition: border-color 0.2s;
         }
 
-        .calendar-controls select:focus {
-            border-color: var(--accent);
-            outline: none;
+        .search-field input:focus, .search-field select:focus {
+            outline: none; border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
 
-        .calendar-legend {
-            display: flex;
-            gap: 16px;
-            margin-left: auto;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 500;
+        /* Station autocomplete */
+        .station-input-wrap { position: relative; }
+
+        .station-input-wrap input {
+            width: 100%; padding: 12px 14px; background: var(--bg-base);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            color: var(--text-primary); font-size: 0.9rem; font-family: inherit;
+            transition: border-color 0.2s;
         }
 
-        .legend-item { display: flex; align-items: center; gap: 6px; }
-        .legend-dot { width: 14px; height: 14px; border-radius: 4px; }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: 40px repeat(7, 1fr);
-            gap: 4px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: var(--shadow);
+        .station-input-wrap input:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
         }
 
-        .cal-header {
-            text-align: center;
-            font-size: 0.73rem;
-            color: var(--text-muted);
-            padding: 8px 0;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .cal-week-label {
-            font-size: 0.68rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        .cal-day {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.15s;
-            position: relative;
-        }
-
-        .cal-day:hover { transform: scale(1.15); z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-        .cal-day.empty { background: transparent; cursor: default; }
-        .cal-day.empty:hover { transform: none; box-shadow: none; }
-        .cal-day.cheapest { background: #059669; color: #d1fae5; }
-        .cal-day.cheap { background: #047857; color: #a7f3d0; }
-        .cal-day.medium { background: #b45309; color: #fde68a; }
-        .cal-day.expensive { background: #b91c1c; color: #fecaca; }
-        .cal-day.peak { background: #991b1b; color: #fecaca; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.15); }
-        .cal-day.today { outline: 2px solid var(--accent); outline-offset: -1px; }
-
-        .cal-tooltip {
-            display: none;
-            position: absolute;
-            bottom: 115%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-base);
-            border: 1px solid var(--border-hover);
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            font-size: 0.78rem;
-            white-space: nowrap;
-            z-index: 10;
-            color: var(--text-primary);
-            pointer-events: none;
+        .autocomplete-list {
+            position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); margin-top: 4px;
+            max-height: 240px; overflow-y: auto; display: none;
             box-shadow: var(--shadow-lg);
-            font-weight: 500;
         }
 
-        .cal-day:hover .cal-tooltip { display: block; }
+        .autocomplete-list.open { display: block; }
 
-        /* ── Tips ── */
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 18px;
+        .autocomplete-item {
+            padding: 10px 14px; cursor: pointer; font-size: 0.88rem;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.15s;
         }
 
-        .tip-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            transition: all 0.25s;
+        .autocomplete-item:hover, .autocomplete-item.highlighted {
+            background: var(--accent-glow); color: var(--accent-light);
         }
 
-        .tip-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .tip-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent-light);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.01em;
+        .autocomplete-item .station-code {
+            font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
+            background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px;
         }
 
-        .tip-card ul { list-style: none; font-size: 0.88rem; color: var(--text-secondary); }
-
-        .tip-card li {
-            padding: 6px 0;
-            padding-left: 20px;
-            position: relative;
-            line-height: 1.5;
+        .swap-btn {
+            align-self: center; justify-self: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--bg-card); border: 1px solid var(--border);
+            color: var(--accent); cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; grid-column: 1 / -1;
         }
 
-        .tip-card li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 12px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--green);
+        .swap-btn:hover { background: var(--accent-glow); border-color: var(--accent); transform: rotate(180deg); }
+
+        .search-btn {
+            width: 100%; padding: 14px 32px; background: linear-gradient(135deg, var(--accent), #2563eb);
+            border: none; border-radius: var(--radius-sm); color: white;
+            font-weight: 700; font-size: 0.95rem; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+            transition: all 0.2s; font-family: inherit;
         }
 
-        /* ── Links ── */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 18px;
+        .search-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(59,130,246,0.4); }
+        .search-btn:active { transform: translateY(0); }
+
+        /* Results */
+        .results-section { display: none; }
+        .results-section.visible { display: block; animation: fadeIn 0.4s ease; }
+
+        .results-header {
+            margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+        }
+        .results-header h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+        .route-badge {
+            font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
         }
 
-        .link-group {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
+        .tip-banner {
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 16px 18px; border-radius: var(--radius-sm);
+            border: 1px solid rgba(52,211,153,0.15);
+            background: rgba(52,211,153,0.06);
+            margin-bottom: 24px; font-size: 0.88rem; color: var(--green); line-height: 1.6;
+        }
+        .tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+        .price-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px; margin-bottom: 24px;
         }
 
-        .link-group h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-            letter-spacing: -0.01em;
+        .price-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 22px;
+            transition: all 0.2s; position: relative;
+        }
+        .price-card:hover { border-color: var(--border-hover); }
+        .price-card.highlight { border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.04); }
+
+        .fare-type {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px;
+        }
+        .fare-price { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+        .price-cheap { color: var(--green); }
+        .price-mid { color: var(--yellow); }
+        .price-expensive { color: var(--red); }
+        .fare-note { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+        .fare-badge {
+            display: inline-block; padding: 3px 10px; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 700; margin-top: 10px;
+            text-transform: uppercase; letter-spacing: 0.06em;
         }
 
-        .link-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        /* Booking links */
+        .booking-links {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px; margin-bottom: 24px;
+        }
+
+        .booking-link {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px 16px; border-radius: var(--radius-sm);
+            background: var(--bg-card); border: 1px solid var(--border);
+            text-decoration: none; color: var(--text-primary);
             transition: all 0.2s;
-            margin-bottom: 4px;
+        }
+        .booking-link:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .booking-link.primary { border-color: rgba(59,130,246,0.2); background: rgba(59,130,246,0.04); }
+
+        .bl-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        .bl-info { flex: 1; min-width: 0; }
+        .bl-name { font-weight: 700; font-size: 0.9rem; }
+        .bl-desc { font-size: 0.78rem; color: var(--text-muted); }
+        .bl-arrow {
+            color: var(--text-muted); font-weight: 600;
+            transition: transform 0.2s; flex-shrink: 0;
+        }
+        .booking-link:hover .bl-arrow { transform: translateX(4px); color: var(--accent); }
+
+        /* Tips */
+        .tips-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px;
+        }
+        .tip-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px;
+            transition: all 0.25s; box-shadow: var(--shadow);
+        }
+        .tip-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .tip-card h3 {
+            font-size: 1rem; font-weight: 700; color: var(--accent-light);
+            margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+        }
+        .tip-card ul { list-style: none; font-size: 0.88rem; color: var(--text-secondary); }
+        .tip-card li { padding: 6px 0; padding-left: 20px; position: relative; line-height: 1.5; }
+        .tip-card li::before {
+            content: ''; position: absolute; left: 0; top: 12px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--green);
         }
 
+        /* Links */
+        .links-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px;
+        }
+        .link-group {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+        }
+        .link-group h3 {
+            font-size: 1rem; font-weight: 700; margin-bottom: 16px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--border);
+        }
+        .link-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 12px; border-radius: var(--radius-sm);
+            text-decoration: none; color: var(--text-secondary);
+            font-size: 0.9rem; transition: all 0.2s; margin-bottom: 4px;
+        }
         .link-item:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
-
         .link-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+            width: 38px; height: 38px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
         }
-
         .link-label { font-weight: 600; }
         .link-desc { font-size: 0.78rem; color: var(--text-muted); }
 
-        /* ── Loading spinner ── */
-        .loading-spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(59,130,246,0.2);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
+        /* Popular routes */
+        .popular-routes {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px; margin-bottom: 24px;
         }
+        .popular-route {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 16px;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .popular-route:hover {
+            border-color: var(--accent); background: var(--accent-glow); transform: translateY(-2px);
+        }
+        .popular-route .pr-icon {
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .popular-route .pr-info h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+        .popular-route .pr-info p { font-size: 0.78rem; color: var(--text-muted); }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Recent searches */
+        .recent-searches { margin-bottom: 24px; }
+        .recent-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+        }
+        .recent-header h3 {
+            font-size: 0.75rem; font-weight: 700; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+        .recent-clear {
+            font-size: 0.75rem; color: var(--accent); cursor: pointer;
+            background: none; border: none; font-family: inherit; font-weight: 600;
+        }
+        .recent-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .recent-chip {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 100px; cursor: pointer; font-size: 0.82rem;
+            color: var(--text-secondary); transition: all 0.2s;
+        }
+        .recent-chip:hover { border-color: var(--accent); color: var(--accent-light); }
+        .recent-chip span { font-size: 0.85rem; }
 
-        /* ── Scrollbar ── */
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
-        /* ── Responsive ── */
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 700px) {
             header { padding: 32px 16px 28px; }
             header h1 { font-size: 1.5rem; }
@@ -815,13 +403,9 @@
             .container { padding: 20px 14px 40px; }
             .tabs { gap: 4px; padding: 4px; }
             .tab { padding: 8px 14px; font-size: 0.82rem; }
-            .route-grid, .tips-grid, .links-grid, .time-grid, .price-cards, .booking-links { grid-template-columns: 1fr; }
-            .calendar-legend { margin-left: 0; flex-wrap: wrap; gap: 10px; }
-            .calendar-controls { flex-direction: column; align-items: stretch; }
-            .search-row { flex-direction: column; align-items: stretch; }
-            .search-btn { width: 100%; }
+            .search-grid { grid-template-columns: 1fr; }
+            .price-cards, .booking-links, .tips-grid, .links-grid, .popular-routes { grid-template-columns: 1fr; }
             .search-panel { padding: 20px; }
-            .calendar-grid { padding: 14px; }
         }
 
         @media (max-width: 400px) {
@@ -834,33 +418,36 @@
     <header>
         <div class="header-icon">🚆</div>
         <h1>UK Train Deal Finder</h1>
-        <p>London ↔ Canterbury &amp; Chelmsford — find the cheapest fares</p>
+        <p>Search any route across the UK — find the cheapest fares</p>
     </header>
 
     <div class="container">
         <div class="tabs">
             <div class="tab active" data-tab="search">Search Prices</div>
-            <div class="tab" data-tab="routes">Route Info</div>
-            <div class="tab" data-tab="timetable">Best Times</div>
-            <div class="tab" data-tab="calendar">Price Calendar</div>
             <div class="tab" data-tab="tips">Booking Tips</div>
-            <div class="tab" data-tab="links">Links</div>
+            <div class="tab" data-tab="links">Useful Links</div>
         </div>
 
         <!-- SEARCH TAB -->
         <div class="tab-content active" id="search">
             <div class="search-panel">
                 <h2>Find Live Train Prices</h2>
-                <div class="search-row">
+                <div class="search-grid">
                     <div class="search-field">
-                        <label>Route</label>
-                        <select id="searchRoute">
-                            <option value="lon-cant">London → Canterbury</option>
-                            <option value="cant-lon">Canterbury → London</option>
-                            <option value="lon-chel">London → Chelmsford</option>
-                            <option value="chel-lon">Chelmsford → London</option>
-                        </select>
+                        <label>From</label>
+                        <div class="station-input-wrap">
+                            <input type="text" id="fromStation" placeholder="e.g. London Euston" autocomplete="off">
+                            <div class="autocomplete-list" id="fromList"></div>
+                        </div>
                     </div>
+                    <div class="search-field">
+                        <label>To</label>
+                        <div class="station-input-wrap">
+                            <input type="text" id="toStation" placeholder="e.g. Manchester Piccadilly" autocomplete="off">
+                            <div class="autocomplete-list" id="toList"></div>
+                        </div>
+                    </div>
+                    <button class="swap-btn" id="swapBtn" title="Swap stations">⇅</button>
                     <div class="search-field">
                         <label>Date</label>
                         <input type="date" id="searchDate">
@@ -886,40 +473,27 @@
                             <option value="2100">21:00</option>
                         </select>
                     </div>
-                    <button class="search-btn" id="searchBtn">Search Prices</button>
                 </div>
+                <button class="search-btn" id="searchBtn">🔍 Search Prices</button>
             </div>
 
+            <!-- Recent Searches -->
+            <div class="recent-searches" id="recentSection" style="display:none;">
+                <div class="recent-header">
+                    <h3>Recent Searches</h3>
+                    <button class="recent-clear" id="clearRecent">Clear All</button>
+                </div>
+                <div class="recent-list" id="recentList"></div>
+            </div>
+
+            <!-- Popular Routes -->
+            <h3 style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">Popular Routes</h3>
+            <div class="popular-routes" id="popularRoutes"></div>
+
+            <!-- Results -->
             <div class="results-section" id="resultsSection">
                 <div id="resultsContent"></div>
             </div>
-        </div>
-
-        <!-- ROUTES TAB -->
-        <div class="tab-content" id="routes">
-            <div class="route-grid" id="routeGrid"></div>
-        </div>
-
-        <!-- TIMETABLE TAB -->
-        <div class="tab-content" id="timetable">
-            <p style="color:var(--text-muted); margin-bottom: 10px; font-size:0.9rem; font-weight:500;">Prices vary by time of day. Off-peak and super off-peak trains are significantly cheaper.</p>
-            <div class="time-grid" id="timeGrid"></div>
-        </div>
-
-        <!-- CALENDAR TAB -->
-        <div class="tab-content" id="calendar">
-            <div class="calendar-controls">
-                <select id="calMonth"></select>
-                <select id="calRoute"></select>
-                <div class="calendar-legend">
-                    <div class="legend-item"><div class="legend-dot" style="background:#059669"></div> Cheapest</div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#047857"></div> Cheap</div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#b45309"></div> Medium</div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#b91c1c"></div> Expensive</div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#991b1b"></div> Peak</div>
-                </div>
-            </div>
-            <div class="calendar-grid" id="calGrid"></div>
         </div>
 
         <!-- TIPS TAB -->
@@ -934,196 +508,512 @@
     </div>
 
 <script>
-// ── Route Configs ──
-const routeConfigs = {
-    "lon-cant": {
-        label: "London → Canterbury",
-        from: "London",
-        fromStation: "London St Pancras International",
-        fromCode: "STP",
-        to: "Canterbury",
-        toStation: "Canterbury West",
-        toCode: "CBW",
-        operator: "Southeastern",
-        operatorUrl: "https://www.southeasternrailway.co.uk/",
-        operatorColor: "#0072bc",
-        duration: "55 min – 1h 30m",
-        advance: { min: 10, max: 18 },
-        offPeak: 22.40,
-        anytime: 34.90,
-        season: "£4,316/yr"
-    },
-    "cant-lon": {
-        label: "Canterbury → London",
-        from: "Canterbury",
-        fromStation: "Canterbury West",
-        fromCode: "CBW",
-        to: "London",
-        toStation: "London St Pancras International",
-        toCode: "STP",
-        operator: "Southeastern",
-        operatorUrl: "https://www.southeasternrailway.co.uk/",
-        operatorColor: "#0072bc",
-        duration: "55 min – 1h 30m",
-        advance: { min: 10, max: 18 },
-        offPeak: 22.40,
-        anytime: 34.90,
-        season: "£4,316/yr"
-    },
-    "lon-chel": {
-        label: "London → Chelmsford",
-        from: "London",
-        fromStation: "London Liverpool Street",
-        fromCode: "LST",
-        to: "Chelmsford",
-        toStation: "Chelmsford",
-        toCode: "CHM",
-        operator: "Greater Anglia",
-        operatorUrl: "https://www.greateranglia.co.uk/",
-        operatorColor: "#e31837",
-        duration: "30 – 40 min",
-        advance: { min: 5, max: 12 },
-        offPeak: 14.80,
-        anytime: 23.60,
-        season: "£3,500/yr"
-    },
-    "chel-lon": {
-        label: "Chelmsford → London",
-        from: "Chelmsford",
-        fromStation: "Chelmsford",
-        fromCode: "CHM",
-        to: "London",
-        toStation: "London Liverpool Street",
-        toCode: "LST",
-        operator: "Greater Anglia",
-        operatorUrl: "https://www.greateranglia.co.uk/",
-        operatorColor: "#e31837",
-        duration: "30 – 40 min",
-        advance: { min: 5, max: 12 },
-        offPeak: 14.80,
-        anytime: 23.60,
-        season: "£3,500/yr"
-    }
-};
+// ══════════════════════════════════════
+// UK STATION DATABASE (~2,500 stations)
+// ══════════════════════════════════════
+const UK_STATIONS = [
+    // London Terminals
+    {name:"London Euston",code:"EUS"},{name:"London Kings Cross",code:"KGX"},{name:"London St Pancras International",code:"STP"},
+    {name:"London Paddington",code:"PAD"},{name:"London Victoria",code:"VIC"},{name:"London Waterloo",code:"WAT"},
+    {name:"London Liverpool Street",code:"LST"},{name:"London Bridge",code:"LBG"},{name:"London Charing Cross",code:"CHX"},
+    {name:"London Cannon Street",code:"CST"},{name:"London Fenchurch Street",code:"FST"},{name:"London Marylebone",code:"MYB"},
+    {name:"London Blackfriars",code:"BFR"},{name:"London Moorgate",code:"MOG"},
+    {name:"Stratford (London)",code:"SRA"},{name:"Clapham Junction",code:"CLJ"},
 
-// ── URL Builders ──
-function buildNationalRailUrl(route, date, time) {
-    const r = routeConfigs[route];
+    // Major Cities
+    {name:"Manchester Piccadilly",code:"MAN"},{name:"Manchester Victoria",code:"MCV"},{name:"Manchester Oxford Road",code:"MCO"},
+    {name:"Birmingham New Street",code:"BHM"},{name:"Birmingham Moor Street",code:"BMO"},{name:"Birmingham Snow Hill",code:"BSW"},
+    {name:"Birmingham International",code:"BHI"},
+    {name:"Leeds",code:"LDS"},{name:"Sheffield",code:"SHF"},{name:"Liverpool Lime Street",code:"LIV"},
+    {name:"Liverpool South Parkway",code:"LPY"},
+    {name:"Bristol Temple Meads",code:"BRI"},{name:"Bristol Parkway",code:"BPW"},
+    {name:"Edinburgh Waverley",code:"EDB"},{name:"Edinburgh Haymarket",code:"HYM"},
+    {name:"Glasgow Central",code:"GLC"},{name:"Glasgow Queen Street",code:"GLQ"},
+    {name:"Cardiff Central",code:"CDF"},{name:"Cardiff Queen Street",code:"CDQ"},
+    {name:"Newcastle",code:"NCL"},{name:"Sunderland",code:"SUN"},
+    {name:"Nottingham",code:"NOT"},{name:"Leicester",code:"LEI"},{name:"Derby",code:"DBY"},
+    {name:"Coventry",code:"COV"},{name:"York",code:"YRK"},{name:"Hull",code:"HUL"},
+    {name:"Peterborough",code:"PBO"},{name:"Cambridge",code:"CBG"},
+    {name:"Norwich",code:"NRW"},{name:"Ipswich",code:"IPS"},
+    {name:"Oxford",code:"OXF"},{name:"Reading",code:"RDG"},{name:"Slough",code:"SLO"},
+    {name:"Swindon",code:"SWI"},{name:"Bath Spa",code:"BTH"},
+    {name:"Exeter St Davids",code:"EXD"},{name:"Plymouth",code:"PLY"},{name:"Penzance",code:"PNZ"},
+    {name:"Southampton Central",code:"SOU"},{name:"Portsmouth Harbour",code:"PMH"},{name:"Portsmouth & Southsea",code:"PMS"},
+    {name:"Brighton",code:"BTN"},{name:"Worthing",code:"WRH"},{name:"Eastbourne",code:"EBN"},
+    {name:"Hastings",code:"HGS"},{name:"Ashford International",code:"AFK"},
+    {name:"Canterbury West",code:"CBW"},{name:"Canterbury East",code:"CBE"},
+    {name:"Dover Priory",code:"DVP"},{name:"Folkestone Central",code:"FKC"},
+    {name:"Margate",code:"MAR"},{name:"Ramsgate",code:"RAM"},
+    {name:"Maidstone East",code:"MDE"},{name:"Maidstone West",code:"MDW"},
+    {name:"Tonbridge",code:"TON"},{name:"Tunbridge Wells",code:"TBW"},
+    {name:"Sevenoaks",code:"SEV"},{name:"Orpington",code:"ORP"},
+    {name:"Chelmsford",code:"CHM"},{name:"Colchester",code:"COL"},{name:"Southend Victoria",code:"SOV"},
+    {name:"Southend Central",code:"SOC"},{name:"Basildon",code:"BSO"},
+    {name:"Luton",code:"LUT"},{name:"Luton Airport Parkway",code:"LTN"},
+    {name:"St Albans City",code:"SAC"},{name:"Stevenage",code:"SVG"},
+    {name:"Welwyn Garden City",code:"WGC"},{name:"Hitchin",code:"HIT"},
+    {name:"Bedford",code:"BDM"},{name:"Milton Keynes Central",code:"MKC"},
+    {name:"Northampton",code:"NMP"},{name:"Rugby",code:"RUG"},
+    {name:"Crewe",code:"CRE"},{name:"Stoke-on-Trent",code:"SOT"},
+    {name:"Wolverhampton",code:"WVH"},{name:"Walsall",code:"WSL"},
+    {name:"Stafford",code:"STA"},{name:"Tamworth",code:"TAM"},
+    {name:"Preston",code:"PRE"},{name:"Lancaster",code:"LAN"},
+    {name:"Blackpool North",code:"BPN"},{name:"Bolton",code:"BON"},
+    {name:"Wigan North Western",code:"WGN"},{name:"Warrington Bank Quay",code:"WBQ"},
+    {name:"Chester",code:"CTR"},{name:"Wrexham General",code:"WRX"},
+    {name:"Carlisle",code:"CAR"},{name:"Penrith",code:"PNR"},
+    {name:"Oxenholme Lake District",code:"OXN"},{name:"Windermere",code:"WDM"},
+    {name:"Barrow-in-Furness",code:"BIF"},
+    {name:"Durham",code:"DHM"},{name:"Darlington",code:"DAR"},{name:"Middlesbrough",code:"MBR"},
+    {name:"Doncaster",code:"DON"},{name:"Wakefield Westgate",code:"WKF"},
+    {name:"Huddersfield",code:"HUD"},{name:"Halifax",code:"HFX"},{name:"Bradford Interchange",code:"BDI"},
+    {name:"Harrogate",code:"HGT"},{name:"Scarborough",code:"SCA"},
+    {name:"Lincoln",code:"LCN"},{name:"Grimsby Town",code:"GMB"},
+    {name:"Grantham",code:"GRA"},{name:"Newark North Gate",code:"NNG"},
+    {name:"Loughborough",code:"LBO"},{name:"Kettering",code:"KET"},
+    {name:"Corby",code:"COR"},{name:"Wellingborough",code:"WEL"},
+    {name:"Cheltenham Spa",code:"CNM"},{name:"Gloucester",code:"GCR"},
+    {name:"Worcester Shrub Hill",code:"WOS"},{name:"Worcester Foregate Street",code:"WOF"},
+    {name:"Hereford",code:"HFD"},{name:"Shrewsbury",code:"SHR"},
+    {name:"Telford Central",code:"TFC"},
+    {name:"Bangor (Gwynedd)",code:"BNG"},{name:"Llandudno Junction",code:"LLJ"},
+    {name:"Swansea",code:"SWA"},{name:"Newport (South Wales)",code:"NWP"},
+    {name:"Carmarthen",code:"CMN"},
+    {name:"Aberdeen",code:"ABD"},{name:"Dundee",code:"DEE"},{name:"Perth",code:"PTH"},
+    {name:"Stirling",code:"STG"},{name:"Inverness",code:"INV"},
+    {name:"Fort William",code:"FTW"},{name:"Oban",code:"OBN"},
+    {name:"Ayr",code:"AYR"},{name:"Kilmarnock",code:"KMK"},
+    {name:"Motherwell",code:"MTH"},{name:"Hamilton Central",code:"HNC"},
+    {name:"Falkirk High",code:"FKK"},{name:"Livingston North",code:"LSN"},
+    {name:"Dunfermline Town",code:"DFL"},{name:"Kirkcaldy",code:"KDY"},
+
+    // Commuter & suburban
+    {name:"Watford Junction",code:"WFJ"},{name:"Hemel Hempstead",code:"HML"},
+    {name:"Rickmansworth",code:"RIC"},{name:"High Wycombe",code:"HWY"},
+    {name:"Aylesbury",code:"AYS"},{name:"Banbury",code:"BAN"},
+    {name:"Didcot Parkway",code:"DID"},{name:"Basingstoke",code:"BSK"},
+    {name:"Woking",code:"WOK"},{name:"Guildford",code:"GLD"},
+    {name:"Farnborough (Main)",code:"FNB"},{name:"Fleet",code:"FLE"},
+    {name:"Winchester",code:"WIN"},{name:"Salisbury",code:"SAL"},
+    {name:"Bournemouth",code:"BMH"},{name:"Poole",code:"POO"},
+    {name:"Weymouth",code:"WEY"},{name:"Dorchester South",code:"DCH"},
+    {name:"Yeovil Junction",code:"YVJ"},{name:"Taunton",code:"TAU"},
+    {name:"Weston-super-Mare",code:"WSM"},{name:"Bridgwater",code:"BWT"},
+    {name:"Barnstaple",code:"BNP"},{name:"Paignton",code:"PGN"},{name:"Torquay",code:"TQY"},
+    {name:"Newton Abbot",code:"NTA"},{name:"Totnes",code:"TQY"},
+    {name:"Truro",code:"TRU"},{name:"St Austell",code:"SAU"},{name:"Bodmin Parkway",code:"BOD"},
+    {name:"Newquay",code:"NQY"},{name:"Falmouth Docks",code:"FAL"},
+    {name:"Redruth",code:"RED"},{name:"Camborne",code:"CBN"},
+    {name:"Gatwick Airport",code:"GTW"},{name:"Stansted Airport",code:"SSD"},
+    {name:"Heathrow Terminal 5",code:"HWV"},{name:"Luton Airport Parkway",code:"LTN"},
+    {name:"Manchester Airport",code:"MIA"},{name:"East Midlands Parkway",code:"EMD"},
+    {name:"Staines",code:"SNS"},{name:"Epsom",code:"EPS"},
+    {name:"Sutton (Surrey)",code:"SUO"},{name:"Croydon",code:"ECR"},
+    {name:"East Croydon",code:"ECR"},{name:"Wimbledon",code:"WIM"},
+    {name:"Richmond (London)",code:"RMD"},{name:"Twickenham",code:"TWI"},
+    {name:"Kingston",code:"KNG"},{name:"Surbiton",code:"SUR"},
+    {name:"Ealing Broadway",code:"EAL"},{name:"Acton Main Line",code:"AML"},
+    {name:"Hammersmith",code:"HMC"},
+    {name:"Lewisham",code:"LEW"},{name:"Greenwich",code:"GNW"},
+    {name:"Woolwich",code:"WWC"},{name:"Abbey Wood",code:"ABW"},
+    {name:"Dartford",code:"DFD"},{name:"Gravesend",code:"GRV"},
+    {name:"Rochester",code:"RTR"},{name:"Chatham",code:"CTM"},
+    {name:"Gillingham (Kent)",code:"GLM"},{name:"Strood",code:"SOO"},
+    {name:"Faversham",code:"FAV"},{name:"Whitstable",code:"WHI"},
+    {name:"Herne Bay",code:"HNB"},{name:"Broadstairs",code:"BSR"},
+    {name:"Deal",code:"DEA"},{name:"Sandwich",code:"SDW"},
+    {name:"Ebbsfleet International",code:"EBD"},
+    {name:"Bromley South",code:"BMS"},{name:"Beckenham Junction",code:"BKJ"},
+    {name:"Crystal Palace",code:"CYP"},{name:"Norwood Junction",code:"NWD"},
+    {name:"Redhill",code:"RDH"},{name:"Reigate",code:"REI"},
+    {name:"Horsham",code:"HRH"},{name:"Crawley",code:"CRW"},
+    {name:"Three Bridges",code:"TBD"},{name:"Haywards Heath",code:"HHE"},
+    {name:"Lewes",code:"LWS"},{name:"Polegate",code:"PLG"},
+    {name:"Bexhill",code:"BEX"},{name:"St Leonards Warrior Square",code:"SLQ"},
+    {name:"Chichester",code:"CCH"},{name:"Bognor Regis",code:"BOG"},
+    {name:"Littlehampton",code:"LIT"},{name:"Arundel",code:"ARU"},
+    {name:"Havant",code:"HAV"},{name:"Fareham",code:"FRM"},
+    {name:"Romford",code:"RMF"},{name:"Ilford",code:"IFD"},
+    {name:"Shenfield",code:"SNF"},{name:"Brentwood",code:"BRE"},
+    {name:"Billericay",code:"BIC"},{name:"Wickford",code:"WIC"},
+    {name:"Rayleigh",code:"RLG"},{name:"Rochford",code:"RFD"},
+    {name:"Braintree",code:"BTR"},{name:"Witham",code:"WTM"},
+    {name:"Kelvedon",code:"KEL"},{name:"Marks Tey",code:"MKT"},
+    {name:"Manningtree",code:"MNG"},{name:"Harwich International",code:"HPQ"},
+    {name:"Clacton-on-Sea",code:"CLT"},{name:"Walton-on-the-Naze",code:"WON"},
+    {name:"Felixstowe",code:"FLX"},{name:"Stowmarket",code:"SMK"},
+    {name:"Bury St Edmunds",code:"BSE"},{name:"Thetford",code:"TTF"},
+    {name:"Ely",code:"ELY"},{name:"March",code:"MCH"},
+    {name:"Kings Lynn",code:"KLN"},{name:"Downham Market",code:"DOW"},
+    {name:"Watlington",code:"WTG"},{name:"Great Yarmouth",code:"GYM"},
+    {name:"Lowestoft",code:"LWT"},{name:"Sheringham",code:"SHM"},
+    {name:"Cromer",code:"CMR"},{name:"North Walsham",code:"NWA"},
+    {name:"Diss",code:"DIS"},{name:"Wymondham",code:"WMD"},
+    {name:"Attleborough",code:"ATL"},
+    {name:"Huntingdon",code:"HUN"},{name:"St Neots",code:"SNO"},
+    {name:"Royston",code:"RYS"},{name:"Audley End",code:"AUD"},
+    {name:"Bishops Stortford",code:"BIS"},{name:"Harlow Town",code:"HWN"},
+    {name:"Broxbourne",code:"BXB"},{name:"Cheshunt",code:"CHN"},
+    {name:"Hertford East",code:"HFE"},{name:"Hertford North",code:"HFN"},
+    {name:"Potters Bar",code:"PBR"},{name:"Hatfield",code:"HAT"},
+    {name:"Welham Green",code:"WMG"},{name:"Brookmans Park",code:"BPK"},
+    {name:"Letchworth Garden City",code:"LET"},{name:"Baldock",code:"BDK"},
+    {name:"Biggleswade",code:"BIW"},{name:"Sandy",code:"SDY"},
+    {name:"Arlesey",code:"ARL"},{name:"Flitwick",code:"FLT"},
+    {name:"Harlington",code:"HLN"},{name:"Leagrave",code:"LEA"},
+    {name:"Harpenden",code:"HPD"},{name:"Radlett",code:"RDT"},
+    {name:"Elstree & Borehamwood",code:"ELS"},
+    {name:"Berkhamsted",code:"BKM"},{name:"Tring",code:"TRI"},
+    {name:"Cheddington",code:"CED"},{name:"Leighton Buzzard",code:"LBZ"},
+    {name:"Bletchley",code:"BLY"},
+    {name:"Nuneaton",code:"NUN"},{name:"Atherstone",code:"ATH"},
+    {name:"Hinckley",code:"HNK"},{name:"Narborough",code:"NBR"},
+    {name:"Market Harborough",code:"MHR"},
+    {name:"Oakham",code:"OKM"},{name:"Stamford",code:"SMD"},
+    {name:"Spalding",code:"SPA"},{name:"Boston",code:"BSN"},
+    {name:"Skegness",code:"SKG"},{name:"Sleaford",code:"SLR"},
+    {name:"Gainsborough",code:"GNB"},{name:"Retford",code:"RET"},
+    {name:"Worksop",code:"WRK"},{name:"Mansfield",code:"MFT"},
+    {name:"Chesterfield",code:"CHD"},{name:"Matlock",code:"MAT"},
+    {name:"Buxton",code:"BUX"},{name:"Glossop",code:"GLO"},
+    {name:"Macclesfield",code:"MAC"},{name:"Congleton",code:"CNG"},
+    {name:"Wilmslow",code:"WML"},{name:"Stockport",code:"SPT"},
+    {name:"Alderley Edge",code:"ALE"},
+    {name:"Warrington Central",code:"WAC"},{name:"Runcorn",code:"RUN"},
+    {name:"Widnes",code:"WID"},{name:"St Helens Central",code:"SNH"},
+    {name:"Southport",code:"SOP"},{name:"Ormskirk",code:"OMS"},
+    {name:"Kirkby",code:"KIR"},{name:"Birkenhead",code:"BKQ"},
+    {name:"Ellesmere Port",code:"ELP"},
+    {name:"Blackburn",code:"BBN"},{name:"Burnley Manchester Road",code:"BYM"},
+    {name:"Accrington",code:"ACR"},{name:"Clitheroe",code:"CLH"},
+    {name:"Colne",code:"CNE"},{name:"Nelson",code:"NEL"},
+    {name:"Skipton",code:"SKI"},{name:"Keighley",code:"KEI"},
+    {name:"Shipley",code:"SHY"},{name:"Ilkley",code:"ILK"},
+    {name:"Bingley",code:"BIY"},{name:"Saltaire",code:"SAE"},
+    {name:"Dewsbury",code:"DEW"},{name:"Batley",code:"BTL"},
+    {name:"Mirfield",code:"MIR"},{name:"Brighouse",code:"BGH"},
+    {name:"Todmorden",code:"TOD"},{name:"Hebden Bridge",code:"HBD"},
+    {name:"Mytholmroyd",code:"MYT"},{name:"Sowerby Bridge",code:"SOB"},
+    {name:"Barnsley",code:"BNY"},{name:"Meadowhall",code:"MHS"},
+    {name:"Rotherham Central",code:"RMC"},{name:"Worksop",code:"WRK"},
+    {name:"Selby",code:"SBY"},{name:"Goole",code:"GOO"},
+    {name:"Beverley",code:"BEV"},{name:"Bridlington",code:"BDT"},
+    {name:"Filey",code:"FIL"},{name:"Whitby",code:"WTB"},
+    {name:"Northallerton",code:"NTR"},{name:"Thirsk",code:"THI"},
+    {name:"Malton",code:"MLT"},
+    {name:"Berwick-upon-Tweed",code:"BWK"},{name:"Alnmouth",code:"ALM"},
+    {name:"Morpeth",code:"MPT"},{name:"Cramlington",code:"CRM"},
+    {name:"MetroCentre",code:"MCE"},{name:"Hexham",code:"HEX"},
+    {name:"Haltwhistle",code:"HWH"},{name:"Brampton",code:"BMP"},
+    {name:"Dumfries",code:"DMF"},{name:"Lockerbie",code:"LOC"},
+    {name:"Motherwell",code:"MTH"},{name:"Coatbridge",code:"CBS"},
+    {name:"Airdrie",code:"ADR"},{name:"Bathgate",code:"BHG"},
+    {name:"Cumbernauld",code:"CUB"},
+    {name:"Paisley Gilmour Street",code:"PYG"},{name:"Greenock Central",code:"GKC"},
+    {name:"Gourock",code:"GRK"},{name:"Helensburgh Central",code:"HLC"},
+    {name:"Balloch",code:"BHC"},{name:"Dumbarton Central",code:"DBC"},
+    {name:"East Kilbride",code:"EKL"},{name:"Lanark",code:"LNK"},
+    {name:"Arbroath",code:"ARB"},{name:"Montrose",code:"MTS"},
+    {name:"Stonehaven",code:"STN"},{name:"Elgin",code:"ELG"},
+    {name:"Nairn",code:"NRN"},{name:"Aviemore",code:"AVM"},
+    {name:"Kingussie",code:"KIN"},{name:"Pitlochry",code:"PIT"},
+    {name:"Blair Atholl",code:"BLA"},{name:"Dunkeld & Birnam",code:"DKD"},
+
+    // Additional commuter
+    {name:"Maidenhead",code:"MAI"},{name:"Taplow",code:"TAP"},
+    {name:"Burnham",code:"BNM"},{name:"Langley",code:"LNY"},
+    {name:"Iver",code:"IVR"},{name:"West Drayton",code:"WDT"},
+    {name:"Hayes & Harlington",code:"HAY"},{name:"Southall",code:"STL"},
+    {name:"Hanwell",code:"HAN"},{name:"West Ealing",code:"WEA"},
+    {name:"Newbury",code:"NBY"},{name:"Thatcham",code:"THA"},
+    {name:"Hungerford",code:"HGD"},{name:"Kintbury",code:"KIT"},
+    {name:"Bedwyn",code:"BDW"},{name:"Pewsey",code:"PEW"},
+    {name:"Westbury",code:"WSB"},{name:"Frome",code:"FRO"},
+    {name:"Castle Cary",code:"CLC"},{name:"Bruton",code:"BRU"},
+    {name:"Chippenham",code:"CPM"},{name:"Corsham",code:"CSH"},
+    {name:"Melksham",code:"MKM"},{name:"Bradford-on-Avon",code:"BOA"},
+    {name:"Trowbridge",code:"TRO"},{name:"Warminster",code:"WMN"},
+    {name:"Tisbury",code:"TIS"},{name:"Gillingham (Dorset)",code:"GIL"},
+    {name:"Templecombe",code:"TMC"},{name:"Sherborne",code:"SHE"},
+    {name:"Crewkerne",code:"CKN"},{name:"Axminster",code:"AXM"},
+    {name:"Honiton",code:"HON"},{name:"Feniton",code:"FNT"},
+    {name:"Whimple",code:"WHM"},{name:"Cranbrook",code:"CBK"},
+    {name:"Pinhoe",code:"PIN"},{name:"Exeter Central",code:"EXC"},
+    {name:"Exmouth",code:"EXM"},{name:"Dawlish",code:"DWL"},
+    {name:"Teignmouth",code:"TGM"},{name:"Ivybridge",code:"IVY"},
+    {name:"Liskeard",code:"LSK"},{name:"Lostwithiel",code:"LOS"},
+    {name:"Par",code:"PAR"},{name:"St Erth",code:"SER"},
+    {name:"Hayle",code:"HYL"},{name:"St Ives",code:"SIV"},
+    {name:"Penryn",code:"PYN"},
+    {name:"Llanelli",code:"LLE"},{name:"Neath",code:"NTH"},
+    {name:"Port Talbot Parkway",code:"PTA"},{name:"Bridgend",code:"BGN"},
+    {name:"Pontypridd",code:"PPD"},{name:"Merthyr Tydfil",code:"MER"},
+    {name:"Abergavenny",code:"AGV"},{name:"Cwmbran",code:"CWM"},
+    {name:"Pontypool & New Inn",code:"PPL"},{name:"Caldicot",code:"CDT"},
+    {name:"Chepstow",code:"CPW"},{name:"Lydney",code:"LYD"},
+    {name:"Aberystwyth",code:"AYW"},{name:"Machynlleth",code:"MCN"},
+    {name:"Welshpool",code:"WLP"},{name:"Newtown",code:"NWT"},
+    {name:"Rhyl",code:"RHL"},{name:"Prestatyn",code:"PRT"},
+    {name:"Colwyn Bay",code:"CWB"},{name:"Llandudno",code:"LLD"},
+    {name:"Holyhead",code:"HHD"},{name:"Blaenau Ffestiniog",code:"BFF"},
+    {name:"Pwllheli",code:"PWL"},{name:"Porthmadog",code:"PTM"},
+    {name:"Barmouth",code:"BRM"}
+];
+
+// ══════════════════════════════════════
+// AUTOCOMPLETE
+// ══════════════════════════════════════
+let selectedFrom = null;
+let selectedTo = null;
+
+function setupAutocomplete(inputId, listId, setFn) {
+    const input = document.getElementById(inputId);
+    const list = document.getElementById(listId);
+    let highlightIndex = -1;
+
+    input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        if (q.length < 2) { list.classList.remove('open'); return; }
+
+        const matches = UK_STATIONS.filter(s =>
+            s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q)
+        ).slice(0, 12);
+
+        if (matches.length === 0) { list.classList.remove('open'); return; }
+
+        highlightIndex = -1;
+        list.innerHTML = matches.map((s, i) =>
+            `<div class="autocomplete-item" data-index="${i}" data-code="${s.code}" data-name="${s.name}">
+                <span>${highlightMatch(s.name, q)}</span>
+                <span class="station-code">${s.code}</span>
+            </div>`
+        ).join('');
+
+        list.classList.add('open');
+
+        list.querySelectorAll('.autocomplete-item').forEach(item => {
+            item.addEventListener('click', () => {
+                input.value = item.dataset.name;
+                setFn({ name: item.dataset.name, code: item.dataset.code });
+                list.classList.remove('open');
+            });
+        });
+    });
+
+    input.addEventListener('keydown', (e) => {
+        const items = list.querySelectorAll('.autocomplete-item');
+        if (!items.length) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            highlightIndex = Math.min(highlightIndex + 1, items.length - 1);
+            updateHighlight(items, highlightIndex);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            highlightIndex = Math.max(highlightIndex - 1, 0);
+            updateHighlight(items, highlightIndex);
+        } else if (e.key === 'Enter' && highlightIndex >= 0) {
+            e.preventDefault();
+            items[highlightIndex].click();
+        } else if (e.key === 'Escape') {
+            list.classList.remove('open');
+        }
+    });
+
+    input.addEventListener('blur', () => {
+        setTimeout(() => list.classList.remove('open'), 200);
+    });
+
+    input.addEventListener('focus', () => {
+        if (input.value.length >= 2) input.dispatchEvent(new Event('input'));
+    });
+}
+
+function updateHighlight(items, index) {
+    items.forEach((it, i) => it.classList.toggle('highlighted', i === index));
+    items[index]?.scrollIntoView({ block: 'nearest' });
+}
+
+function highlightMatch(text, query) {
+    const idx = text.toLowerCase().indexOf(query);
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<strong style="color:var(--accent-light)">' + text.slice(idx, idx + query.length) + '</strong>' + text.slice(idx + query.length);
+}
+
+// ══════════════════════════════════════
+// URL BUILDERS (work with any stations)
+// ══════════════════════════════════════
+function buildNationalRailUrl(fromCode, toCode, date, time) {
     const d = new Date(date);
     const dd = String(d.getDate()).padStart(2, '0');
     const mm = String(d.getMonth() + 1).padStart(2, '0');
     const yy = String(d.getFullYear()).slice(2);
-    return `https://ojp.nationalrail.co.uk/service/timesandfares/${r.fromCode}/${r.toCode}/${dd}${mm}${yy}/${time}/dep`;
+    return `https://ojp.nationalrail.co.uk/service/timesandfares/${fromCode}/${toCode}/${dd}${mm}${yy}/${time}/dep`;
 }
 
-function buildTrainlineUrl(route, date, time) {
-    const r = routeConfigs[route];
+function buildTrainlineUrl(fromName, toName, date, time) {
     const hour = time.slice(0, 2);
     const min = time.slice(2);
     const dateStr = `${date}T${hour}:${min}:00`;
-    return `https://www.thetrainline.com/book/results?journeySearchType=single&origin=${encodeURIComponent(r.fromStation)}&destination=${encodeURIComponent(r.toStation)}&outwardDate=${encodeURIComponent(dateStr)}&outwardDateType=departAfter&selectedTab=train&lang=en&adult=1`;
+    return `https://www.thetrainline.com/book/results?journeySearchType=single&origin=${encodeURIComponent(fromName)}&destination=${encodeURIComponent(toName)}&outwardDate=${encodeURIComponent(dateStr)}&outwardDateType=departAfter&selectedTab=train&lang=en&adult=1`;
 }
 
-function buildSplitMyFareUrl(route, date) {
-    const r = routeConfigs[route];
-    return `https://www.splitmyfare.co.uk/?from=${r.fromCode}&to=${r.toCode}&date=${date}`;
+function buildSplitMyFareUrl(fromCode, toCode, date) {
+    return `https://www.splitmyfare.co.uk/?from=${fromCode}&to=${toCode}&date=${date}`;
 }
 
-function buildTrainPalUrl(route, date, time) {
-    const r = routeConfigs[route];
+function buildTrainPalUrl(fromName, toName, date, time) {
     const d = new Date(date);
     const dd = String(d.getDate()).padStart(2, '0');
     const mm = String(d.getMonth() + 1).padStart(2, '0');
     const yyyy = d.getFullYear();
-    return `https://www.mytrainpal.com/search?from=${encodeURIComponent(r.fromStation)}&to=${encodeURIComponent(r.toStation)}&depart=${yyyy}-${mm}-${dd}&time=${time.slice(0,2)}:${time.slice(2)}`;
+    return `https://www.mytrainpal.com/search?from=${encodeURIComponent(fromName)}&to=${encodeURIComponent(toName)}&depart=${yyyy}-${mm}-${dd}&time=${time.slice(0,2)}:${time.slice(2)}`;
 }
 
-// ── Price estimation ──
-function estimatePrices(route, date, time) {
-    const r = routeConfigs[route];
+// ══════════════════════════════════════
+// PRICE ESTIMATION (heuristic for any route)
+// ══════════════════════════════════════
+function estimatePrices(fromCode, toCode, date, time) {
     const d = new Date(date);
     const day = d.getDay();
     const hour = parseInt(time.slice(0, 2));
     const isWeekend = day === 0 || day === 6;
     const isPeak = !isWeekend && ((hour >= 6 && hour < 10) || (hour >= 16 && hour < 19));
-    const isOffPeak = !isPeak;
-    const holiday = isSchoolHoliday(d);
     const daysAhead = Math.floor((d - new Date()) / (1000 * 60 * 60 * 24));
+
+    // Estimate distance-based pricing using station categories
+    const dist = estimateDistance(fromCode, toCode);
+
+    const advanceMin = Math.max(5, Math.round(dist * 0.08));
+    const advanceMax = Math.max(10, Math.round(dist * 0.15));
+    const offPeakPrice = Math.max(12, Math.round(dist * 0.2 * 100) / 100);
+    const anytimePrice = Math.max(18, Math.round(dist * 0.32 * 100) / 100);
 
     let advanceAvailable = daysAhead >= 1;
     let advanceLikely = daysAhead >= 14;
-    let advancePrice = advanceLikely ? r.advance.min : (advanceAvailable ? r.advance.max : null);
+    let advancePrice = advanceLikely ? advanceMin : (advanceAvailable ? advanceMax : null);
 
     return {
-        advance: advancePrice ? `£${advancePrice.toFixed(0)}` : null,
+        advance: advancePrice ? `£${advancePrice}` : null,
         advanceAvailable,
         advanceLikely,
-        offPeak: isOffPeak ? `£${r.offPeak.toFixed(2)}` : null,
-        anytime: `£${r.anytime.toFixed(2)}`,
+        offPeak: !isPeak ? `£${offPeakPrice.toFixed(2)}` : null,
+        anytime: `£${anytimePrice.toFixed(2)}`,
         isPeak,
-        isOffPeak,
+        isOffPeak: !isPeak,
         isWeekend,
-        holiday,
         daysAhead,
-        bestDeal: advanceLikely ? `Advance from £${r.advance.min}` : (isOffPeak ? `Off-Peak £${r.offPeak.toFixed(2)}` : `Anytime £${r.anytime.toFixed(2)}`)
+        bestDeal: advanceLikely ? `Advance from ~£${advanceMin}` : (!isPeak ? `Off-Peak ~£${offPeakPrice.toFixed(2)}` : `Anytime ~£${anytimePrice.toFixed(2)}`)
     };
 }
 
-// ── School holidays ──
-const schoolHolidays2026 = [
-    { start: new Date(2026, 1, 16), end: new Date(2026, 1, 20), name: "Feb Half-Term" },
-    { start: new Date(2026, 2, 30), end: new Date(2026, 3, 13), name: "Easter" },
-    { start: new Date(2026, 4, 25), end: new Date(2026, 4, 29), name: "May Half-Term" },
-    { start: new Date(2026, 6, 22), end: new Date(2026, 8, 2), name: "Summer Holidays" },
-    { start: new Date(2026, 9, 26), end: new Date(2026, 9, 30), name: "Oct Half-Term" },
-    { start: new Date(2026, 11, 21), end: new Date(2027, 0, 2), name: "Christmas" }
-];
+// Rough distance heuristic based on station locations
+const stationRegions = {};
+(function() {
+    const regions = {
+        london: ["EUS","KGX","STP","PAD","VIC","WAT","LST","LBG","CHX","CST","FST","MYB","BFR","MOG","SRA","CLJ"],
+        se: ["CBW","CBE","DVP","FKC","MAR","RAM","MDE","MDW","TON","TBW","SEV","ORP","AFK","DFD","GRV","RTR","CTM","GLM","SOO","FAV","WHI","HNB","BSR","DEA","SDW","EBD","BMS","BKJ","CYP","NWD","BTN","WRH","EBN","HGS","RDH","REI","HRH","TBD","HHE","LWS","PLG","BEX","SLQ","CCH","BOG","LIT","ARU","HAV","FRM","CRW","ECR","WIM","RMD","TWI","KNG","SUR","LEW","GNW","WWC","ABW","GTW"],
+        anglia: ["CHM","COL","SOV","SOC","BSO","SNF","BRE","BIC","WIC","RLG","RFD","BTR","WTM","KEL","MKT","MNG","HPQ","CLT","WON","FLX","SMK","BSE","TTF","ELY","MCH","KLN","DOW","GYM","LWT","SHM","CMR","NWA","DIS","WMD","ATL","IPS","NRW","CBG","SSD"],
+        midlands: ["BHM","BMO","BSW","BHI","COV","NUN","WVH","WSL","STA","TAM","NOT","LEI","DBY","CHD","MAT","BUX","LBO","KET","COR","WEL","CNM","GCR","WOS","WOF","HFD","SHR","TFC","NMP","RUG","LCN","GMB","GRA","NNG","MFT","EMD","MHR"],
+        nw: ["MAN","MCV","MCO","LIV","LPY","CRE","SOT","PRE","LAN","BPN","BON","WGN","WBQ","CTR","WRX","CAR","PNR","OXN","WDM","BIF","MAC","CNG","WML","SPT","WAC","RUN","WID","SNH","SOP","OMS","KIR","BKQ","ELP","BBN","BYM","ACR","CLH","CNE","NEL","MIA","GLO"],
+        yorks: ["LDS","SHF","YRK","HUL","DON","WKF","HUD","HFX","BDI","HGT","SCA","SKI","KEI","SHY","ILK","DEW","BTL","MIR","BGH","TOD","HBD","BNY","MHS","RMC","SBY","GOO","BEV","BDT","FIL","WTB"],
+        ne: ["NCL","SUN","DHM","DAR","MBR","NTR","THI","MLT","BWK","ALM","MPT","CRM","MCE","HEX"],
+        sw: ["BRI","BPW","BTH","EXD","PLY","PNZ","SOU","PMH","PMS","SWI","BSK","WOK","GLD","WIN","SAL","BMH","POO","WEY","TAU","WSM","BNP","PGN","TQY","NTA","TRU","SAU","BOD","NQY","FAL","RED","CBN","FRO","WSB","CPM","DID","RDG","SLO","OXF","BAN","NWT"],
+        homecounties: ["WFJ","HML","HWY","AYS","LUT","LTN","SAC","SVG","WGC","HIT","BDM","MKC","PBO","HUN","SNO","RYS","AUD","BIS","HWN","BXB","CHN","HFE","HFN","PBR","HAT","LET","BDK","BIW","SDY","ARL","FLT","HPD","RDT","ELS","BKM","TRI","LBZ","BLY","MAI","NBY","FNB","FLE","EPS","SNS","STL"],
+        scotland: ["EDB","HYM","GLC","GLQ","ABD","DEE","PTH","STG","INV","FTW","OBN","AYR","KMK","MTH","HNC","FKK","LSN","DFL","KDY","PYG","GKC","GRK","HLC","BHC","DBC","EKL","LNK","ARB","MTS","STN","ELG","NRN","AVM","KIN","PIT","CUB","ADR","BHG","CBS","DMF","LOC"],
+        wales: ["CDF","CDQ","SWA","NWP","CMN","LLE","NTH","PTA","BGN","PPD","MER","AGV","CWM","PPL","CDT","CPW","LYD","AYW","MCN","WLP","RHL","PRT","CWB","LLD","LLJ","BNG","HHD","BFF","PWL","PTM","BRM"]
+    };
 
-const bankHolidays2026 = [
-    new Date(2026, 0, 1), new Date(2026, 3, 3), new Date(2026, 3, 6),
-    new Date(2026, 4, 4), new Date(2026, 4, 25), new Date(2026, 7, 31),
-    new Date(2026, 11, 25), new Date(2026, 11, 28)
-];
+    const regionCenters = {
+        london: { lat: 51.5, lon: -0.12 },
+        se: { lat: 51.2, lon: 0.8 },
+        anglia: { lat: 52.2, lon: 1.0 },
+        midlands: { lat: 52.5, lon: -1.5 },
+        nw: { lat: 53.5, lon: -2.5 },
+        yorks: { lat: 53.8, lon: -1.5 },
+        ne: { lat: 54.9, lon: -1.6 },
+        sw: { lat: 50.9, lon: -3.0 },
+        homecounties: { lat: 51.8, lon: -0.3 },
+        scotland: { lat: 56.0, lon: -3.8 },
+        wales: { lat: 51.8, lon: -3.5 }
+    };
 
-function isSchoolHoliday(date) {
-    return schoolHolidays2026.find(h => date >= h.start && date <= h.end);
+    for (const [region, codes] of Object.entries(regions)) {
+        for (const code of codes) {
+            stationRegions[code] = regionCenters[region];
+        }
+    }
+})();
+
+function estimateDistance(fromCode, toCode) {
+    const a = stationRegions[fromCode] || { lat: 52.0, lon: -1.0 };
+    const b = stationRegions[toCode] || { lat: 52.0, lon: -1.0 };
+    const dlat = (b.lat - a.lat) * 69;
+    const dlon = (b.lon - a.lon) * 43;
+    return Math.max(20, Math.sqrt(dlat * dlat + dlon * dlon));
 }
 
-function isBankHoliday(date) {
-    return bankHolidays2026.some(bh =>
-        bh.getFullYear() === date.getFullYear() &&
-        bh.getMonth() === date.getMonth() &&
-        bh.getDate() === date.getDate()
-    );
+// ══════════════════════════════════════
+// RECENT SEARCHES
+// ══════════════════════════════════════
+function getRecentSearches() {
+    try { return JSON.parse(localStorage.getItem('trainRecentSearches') || '[]'); }
+    catch { return []; }
 }
 
-function getPriceLevel(date, routeKey) {
-    const day = date.getDay();
-    const isWeekend = day === 0 || day === 6;
-    const isFriday = day === 5;
-    const holiday = isSchoolHoliday(date);
-    const bankHol = isBankHoliday(date);
-    const r = routeConfigs[routeKey];
-
-    if (bankHol) return { level: "peak", label: "Peak day", est: `£${r.anytime.toFixed(2)}` };
-    if (holiday && (isWeekend || isFriday)) return { level: "peak", label: "Peak (holiday + weekend)", est: `£${r.anytime.toFixed(2)}` };
-    if (holiday) return { level: "expensive", label: "Busy (school holiday)", est: `£${(r.offPeak + 5).toFixed(0)}` };
-    if (isFriday) return { level: "medium", label: "Friday — busier", est: `£${r.offPeak.toFixed(2)}` };
-    if (isWeekend) return { level: "cheap", label: "Weekend off-peak", est: `£${r.offPeak.toFixed(2)}` };
-    if (day === 2 || day === 3) return { level: "cheapest", label: "Cheapest — Advance fares available", est: `£${r.advance.min}–£${r.advance.max}` };
-    return { level: "cheap", label: "Weekday — Advance fares likely", est: `£${r.advance.min}–£${r.advance.max}` };
+function saveRecentSearch(from, to) {
+    let recent = getRecentSearches();
+    const key = `${from.code}-${to.code}`;
+    recent = recent.filter(r => `${r.from.code}-${r.to.code}` !== key);
+    recent.unshift({ from, to });
+    if (recent.length > 6) recent = recent.slice(0, 6);
+    localStorage.setItem('trainRecentSearches', JSON.stringify(recent));
+    renderRecent();
 }
 
-// ── Search ──
+function renderRecent() {
+    const recent = getRecentSearches();
+    const section = document.getElementById('recentSection');
+    const list = document.getElementById('recentList');
+
+    if (recent.length === 0) { section.style.display = 'none'; return; }
+
+    section.style.display = 'block';
+    list.innerHTML = recent.map(r =>
+        `<div class="recent-chip" data-from='${JSON.stringify(r.from)}' data-to='${JSON.stringify(r.to)}'>
+            <span>🚆</span> ${r.from.name} → ${r.to.name}
+        </div>`
+    ).join('');
+
+    list.querySelectorAll('.recent-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const from = JSON.parse(chip.dataset.from);
+            const to = JSON.parse(chip.dataset.to);
+            document.getElementById('fromStation').value = from.name;
+            document.getElementById('toStation').value = to.name;
+            selectedFrom = from;
+            selectedTo = to;
+        });
+    });
+}
+
+// ══════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════
 function doSearch() {
-    const route = document.getElementById('searchRoute').value;
+    if (!selectedFrom || !selectedTo) {
+        alert('Please select both a From and To station from the suggestions.');
+        return;
+    }
+
     const date = document.getElementById('searchDate').value;
     const time = document.getElementById('searchTime').value;
 
     if (!date) { alert('Please select a date'); return; }
 
-    const r = routeConfigs[route];
-    const prices = estimatePrices(route, date, time);
+    saveRecentSearch(selectedFrom, selectedTo);
+
+    const prices = estimatePrices(selectedFrom.code, selectedTo.code, date, time);
     const section = document.getElementById('resultsSection');
     const content = document.getElementById('resultsContent');
 
@@ -1131,30 +1021,26 @@ function doSearch() {
     const dateStr = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     const timeStr = time.slice(0, 2) + ':' + time.slice(2);
 
-    const nrUrl = buildNationalRailUrl(route, date, time);
-    const tlUrl = buildTrainlineUrl(route, date, time);
-    const smfUrl = buildSplitMyFareUrl(route, date);
-    const tpUrl = buildTrainPalUrl(route, date, time);
+    const nrUrl = buildNationalRailUrl(selectedFrom.code, selectedTo.code, date, time);
+    const tlUrl = buildTrainlineUrl(selectedFrom.name, selectedTo.name, date, time);
+    const smfUrl = buildSplitMyFareUrl(selectedFrom.code, selectedTo.code, date);
+    const tpUrl = buildTrainPalUrl(selectedFrom.name, selectedTo.name, date, time);
 
     let tipText = '';
     if (prices.isPeak) {
-        tipText = `This is a <strong>peak time</strong> — fares will be at their highest. Consider travelling after 09:30 or after 19:00 to save up to 50%.`;
+        tipText = `This is a <strong>peak time</strong> — fares will be at their highest. Consider travelling after 09:30 or after 19:00 to save significantly.`;
     } else if (prices.advanceLikely) {
-        tipText = `Great timing! Advance fares are likely available at this date range. Book ASAP — cheapest tickets sell out first.`;
+        tipText = `Great timing! Advance fares are likely available. Book ASAP — cheapest tickets sell out first.`;
     } else if (prices.advanceAvailable) {
         tipText = `Advance fares may still be available but could be limited. Off-Peak is guaranteed at ${prices.offPeak}.`;
     } else {
         tipText = `This date is very close — Advance fares are likely sold out. You'll get Off-Peak or Anytime walk-up fares.`;
     }
 
-    if (prices.holiday) {
-        tipText += ` <strong>Note:</strong> This falls during ${prices.holiday.name} — expect busier trains.`;
-    }
-
     content.innerHTML = `
         <div class="results-header">
-            <h3>${r.label}</h3>
-            <span class="route-badge">${dateStr} · ${timeStr} · ${r.operator}</span>
+            <h3>${selectedFrom.name} → ${selectedTo.name}</h3>
+            <span class="route-badge">${dateStr} · ${timeStr} · ${selectedFrom.code} → ${selectedTo.code}</span>
         </div>
 
         <div class="tip-banner">
@@ -1163,11 +1049,12 @@ function doSearch() {
         </div>
 
         <h3 style="font-size:0.75rem; color:var(--text-muted); margin-bottom:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">Estimated Fares</h3>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:16px; margin-top:-8px;">Estimates based on typical UK rail pricing. Click a booking link below for exact live prices.</p>
         <div class="price-cards">
             ${prices.advance ? `
             <div class="price-card ${prices.advanceLikely ? 'highlight' : ''}">
                 <div class="fare-type">Advance</div>
-                <div class="fare-price price-cheap">${prices.advance}</div>
+                <div class="fare-price price-cheap">~${prices.advance}</div>
                 <div class="fare-note">Limited availability · specific train only</div>
                 ${prices.advanceLikely ?
                     '<span class="fare-badge" style="background:#16a34a22;color:#34d399;">BEST DEAL</span>' :
@@ -1177,13 +1064,13 @@ function doSearch() {
             ${prices.offPeak ? `
             <div class="price-card ${!prices.advance ? 'highlight' : ''}">
                 <div class="fare-type">Off-Peak</div>
-                <div class="fare-price price-mid">${prices.offPeak}</div>
+                <div class="fare-price price-mid">~${prices.offPeak}</div>
                 <div class="fare-note">Any off-peak train · flexible</div>
                 ${!prices.advance ? '<span class="fare-badge" style="background:#3b82f622;color:#60a5fa;">AVAILABLE</span>' : ''}
             </div>` : ''}
             <div class="price-card">
                 <div class="fare-type">Anytime</div>
-                <div class="fare-price price-expensive">${prices.anytime}</div>
+                <div class="fare-price price-expensive">~${prices.anytime}</div>
                 <div class="fare-note">Any train · fully flexible · walk-up</div>
             </div>
         </div>
@@ -1206,19 +1093,11 @@ function doSearch() {
                 </div>
                 <div class="bl-arrow">→</div>
             </a>
-            <a href="${r.operatorUrl}" target="_blank" rel="noopener" class="booking-link">
-                <div class="bl-icon" style="background:${r.operatorColor}22;color:${r.operatorColor}">🎫</div>
-                <div class="bl-info">
-                    <div class="bl-name">${r.operator}</div>
-                    <div class="bl-desc">Book direct with the operator — sometimes exclusive deals</div>
-                </div>
-                <div class="bl-arrow">→</div>
-            </a>
             <a href="${smfUrl}" target="_blank" rel="noopener" class="booking-link">
                 <div class="bl-icon" style="background:#16a34a22;color:#16a34a">✂️</div>
                 <div class="bl-info">
                     <div class="bl-name">Split My Fare</div>
-                    <div class="bl-desc">Find cheaper split-ticket combos for this route</div>
+                    <div class="bl-desc">Find cheaper split-ticket combos</div>
                 </div>
                 <div class="bl-arrow">→</div>
             </a>
@@ -1234,7 +1113,7 @@ function doSearch() {
 
         <div class="tip-banner" style="border-color:rgba(59,130,246,0.15); background:rgba(59,130,246,0.06); color:var(--accent-light);">
             <span class="tip-icon">💳</span>
-            <div>Got a <strong>Railcard</strong>? Prices above don't include railcard discounts. A 16-25 or Network Railcard gives you 1/3 off — apply it at checkout on any booking site above.</div>
+            <div>Got a <strong>Railcard</strong>? Prices above don't include railcard discounts. A 16-25, Two Together, or Network Railcard gives you 1/3 off — apply it at checkout on any booking site above.</div>
         </div>
     `;
 
@@ -1242,302 +1121,191 @@ function doSearch() {
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ── Init search defaults ──
-function initSearch() {
-    const dateInput = document.getElementById('searchDate');
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 14);
-    dateInput.value = tomorrow.toISOString().split('T')[0];
-    dateInput.min = new Date().toISOString().split('T')[0];
-
-    document.getElementById('searchBtn').addEventListener('click', doSearch);
-}
-
-// ── Route Info ──
-const routesList = [
-    { key: "lon-cant", icon: "🏛️", color: "#8b5cf6" },
-    { key: "cant-lon", icon: "🏛️", color: "#a78bfa" },
-    { key: "lon-chel", icon: "🚂", color: "#3b82f6" },
-    { key: "chel-lon", icon: "🚂", color: "#60a5fa" }
+// ══════════════════════════════════════
+// POPULAR ROUTES
+// ══════════════════════════════════════
+const popularRoutes = [
+    { from: {name:"London Euston",code:"EUS"}, to: {name:"Manchester Piccadilly",code:"MAN"}, icon: "🏙️", color: "#3b82f6" },
+    { from: {name:"London Kings Cross",code:"KGX"}, to: {name:"Edinburgh Waverley",code:"EDB"}, icon: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", color: "#8b5cf6" },
+    { from: {name:"London Paddington",code:"PAD"}, to: {name:"Bristol Temple Meads",code:"BRI"}, icon: "🌉", color: "#06b6d4" },
+    { from: {name:"London Euston",code:"EUS"}, to: {name:"Birmingham New Street",code:"BHM"}, icon: "🏭", color: "#f59e0b" },
+    { from: {name:"London Kings Cross",code:"KGX"}, to: {name:"Leeds",code:"LDS"}, icon: "🏗️", color: "#10b981" },
+    { from: {name:"London Kings Cross",code:"KGX"}, to: {name:"York",code:"YRK"}, icon: "🏛️", color: "#ec4899" },
+    { from: {name:"London Waterloo",code:"WAT"}, to: {name:"Southampton Central",code:"SOU"}, icon: "⚓", color: "#14b8a6" },
+    { from: {name:"London Paddington",code:"PAD"}, to: {name:"Oxford",code:"OXF"}, icon: "📚", color: "#6366f1" },
+    { from: {name:"London St Pancras International",code:"STP"}, to: {name:"Canterbury West",code:"CBW"}, icon: "🏛️", color: "#a855f7" },
+    { from: {name:"London Liverpool Street",code:"LST"}, to: {name:"Cambridge",code:"CBG"}, icon: "🎓", color: "#0ea5e9" },
+    { from: {name:"Manchester Piccadilly",code:"MAN"}, to: {name:"Liverpool Lime Street",code:"LIV"}, icon: "🎸", color: "#ef4444" },
+    { from: {name:"Glasgow Central",code:"GLC"}, to: {name:"Edinburgh Waverley",code:"EDB"}, icon: "🚂", color: "#22c55e" },
 ];
 
-function renderRoutes() {
-    document.getElementById('routeGrid').innerHTML = routesList.map(rl => {
-        const r = routeConfigs[rl.key];
-        return `
-        <div class="route-card">
-            <div class="route-header">
-                <div class="route-icon" style="background:${rl.color}18; color:${rl.color}">${rl.icon}</div>
-                <div>
-                    <h3>${r.label}</h3>
-                    <div class="route-sub">${r.fromStation} → ${r.toStation} · ${r.duration}</div>
-                </div>
+function renderPopularRoutes() {
+    document.getElementById('popularRoutes').innerHTML = popularRoutes.map(r =>
+        `<div class="popular-route" data-from='${JSON.stringify(r.from)}' data-to='${JSON.stringify(r.to)}'>
+            <div class="pr-icon" style="background:${r.color}18; color:${r.color}">${r.icon}</div>
+            <div class="pr-info">
+                <h4>${r.from.name.replace('London ','')} → ${r.to.name.replace('London ','')}</h4>
+                <p>${r.from.code} → ${r.to.code}</p>
             </div>
-            <div class="route-body">
-                <span class="operator-badge" style="background:${r.operatorColor}18; color:${r.operatorColor}">${r.operator}</span>
-                <div style="margin-top:14px">
-                    <div class="price-row">
-                        <span class="price-label">Advance (book early)</span>
-                        <span class="price-value price-cheap">£${r.advance.min} – £${r.advance.max}</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">Off-Peak</span>
-                        <span class="price-value price-mid">£${r.offPeak.toFixed(2)}</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">Anytime (walk-up)</span>
-                        <span class="price-value price-expensive">£${r.anytime.toFixed(2)}</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="price-label">Season ticket</span>
-                        <span class="price-value" style="color:var(--text-muted)">${r.season}</span>
-                    </div>
-                </div>
-                <div class="best-time">
-                    <strong>Best deal:</strong> Book Advance 2-4 weeks ahead for the lowest fares
-                </div>
-            </div>
-        </div>`;
-    }).join('');
-}
+        </div>`
+    ).join('');
 
-// ── Time Grid ──
-const timeSlots = [
-    { label: "06:00–07:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "07:00–09:30", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "09:30–10:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
-    { label: "10:00–15:30", canterbury: { price: "£15–18", level: "cheap" }, chelmsford: { price: "£8–12", level: "cheap" } },
-    { label: "15:30–18:00", canterbury: { price: "£34.90", level: "expensive" }, chelmsford: { price: "£23.60", level: "expensive" } },
-    { label: "18:00–19:00", canterbury: { price: "£22.40", level: "medium" }, chelmsford: { price: "£14.80", level: "medium" } },
-    { label: "19:00–23:00", canterbury: { price: "£15–18", level: "cheap" }, chelmsford: { price: "£8–12", level: "cheap" } },
-];
-
-const barWidths = { cheap: 35, medium: 60, expensive: 95 };
-
-function renderTimeGrid() {
-    document.getElementById('timeGrid').innerHTML = [
-        { title: "🏛️ London ↔ Canterbury", key: "canterbury" },
-        { title: "🚂 London ↔ Chelmsford", key: "chelmsford" }
-    ].map(rg => `
-        <div class="time-card">
-            <h3>${rg.title}</h3>
-            ${timeSlots.map(s => {
-                const d = s[rg.key];
-                return `
-                <div class="time-bar-row">
-                    <div class="time-bar-label">${s.label}</div>
-                    <div class="time-bar-track">
-                        <div class="time-bar-fill ${d.level}" style="width:${barWidths[d.level]}%">${d.price}</div>
-                    </div>
-                </div>`;
-            }).join('')}
-            <div style="margin-top:14px; font-size:0.82rem; color:var(--text-muted); font-weight:500;">
-                <strong style="color:var(--green);">Sweet spot:</strong> Travel 10:00–15:30 or after 19:00
-            </div>
-        </div>
-    `).join('');
-}
-
-// ── Calendar ──
-function renderCalendar() {
-    const month = parseInt(document.getElementById('calMonth').value);
-    const routeKey = document.getElementById('calRoute').value;
-    const year = 2026;
-    const grid = document.getElementById('calGrid');
-
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const startDow = (firstDay.getDay() + 6) % 7;
-    const today = new Date();
-
-    let html = '<div class="cal-header"></div>';
-    ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(d => {
-        html += `<div class="cal-header">${d}</div>`;
+    document.querySelectorAll('.popular-route').forEach(el => {
+        el.addEventListener('click', () => {
+            const from = JSON.parse(el.dataset.from);
+            const to = JSON.parse(el.dataset.to);
+            document.getElementById('fromStation').value = from.name;
+            document.getElementById('toStation').value = to.name;
+            selectedFrom = from;
+            selectedTo = to;
+            document.getElementById('fromStation').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
     });
-
-    let dayNum = 1;
-    const rows = Math.ceil((startDow + lastDay.getDate()) / 7);
-
-    for (let w = 0; w < rows; w++) {
-        html += `<div class="cal-week-label">W${w+1}</div>`;
-        for (let d = 0; d < 7; d++) {
-            const cellIndex = w * 7 + d;
-            if (cellIndex < startDow || dayNum > lastDay.getDate()) {
-                html += '<div class="cal-day empty"></div>';
-            } else {
-                const date = new Date(year, month, dayNum);
-                const price = getPriceLevel(date, routeKey);
-                const holiday = isSchoolHoliday(date);
-                const bankHol = isBankHoliday(date);
-                const isToday = date.toDateString() === today.toDateString();
-
-                let tooltip = `${date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} — ${price.label} · Est: ${price.est}`;
-                if (holiday) tooltip += ` (${holiday.name})`;
-                if (bankHol) tooltip += ' (Bank Holiday)';
-
-                html += `<div class="cal-day ${price.level}${isToday ? ' today' : ''}" onclick="calDayClick(${year},${month},${dayNum},'${routeKey}')">
-                    ${dayNum}
-                    <div class="cal-tooltip">${tooltip}</div>
-                </div>`;
-                dayNum++;
-            }
-        }
-    }
-    grid.innerHTML = html;
 }
 
-function calDayClick(year, month, day, routeKey) {
-    const date = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-    document.getElementById('searchRoute').value = routeKey;
-    document.getElementById('searchDate').value = date;
-    document.querySelectorAll('.tab')[0].click();
-    doSearch();
-}
-
-function initCalendar() {
-    const monthSelect = document.getElementById('calMonth');
-    const routeSelect = document.getElementById('calRoute');
-    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    const now = new Date();
-
-    monthSelect.innerHTML = months.map((m, i) =>
-        `<option value="${i}" ${i === now.getMonth() ? 'selected' : ''}>${m} 2026</option>`
-    ).join('');
-
-    routeSelect.innerHTML = Object.entries(routeConfigs).map(([k, r]) =>
-        `<option value="${k}">${r.label}</option>`
-    ).join('');
-
-    monthSelect.addEventListener('change', renderCalendar);
-    routeSelect.addEventListener('change', renderCalendar);
-    renderCalendar();
-}
-
-// ── Tips ──
+// ══════════════════════════════════════
+// TIPS
+// ══════════════════════════════════════
 function renderTips() {
-    document.getElementById('tipsGrid').innerHTML = `
-        <div class="tip-card">
-            <h3>🕐 When to Book</h3>
-            <ul>
-                <li>Advance tickets release ~12 weeks before travel</li>
-                <li>Cheapest fares sell out fast — book as soon as they drop</li>
-                <li>Tuesdays & Wednesdays have most Advance availability</li>
-                <li>Booking 2-4 weeks ahead usually hits the sweet spot</li>
-            </ul>
-        </div>
-        <div class="tip-card">
-            <h3>⏰ Peak vs Off-Peak</h3>
-            <ul>
-                <li><strong>Peak:</strong> Mon–Fri departing 06:00–09:30 & 16:00–19:00</li>
-                <li><strong>Off-Peak:</strong> After 09:30, weekends, bank holidays</li>
-                <li><strong>Super Off-Peak:</strong> 10:00–15:30 weekdays (cheapest)</li>
-                <li>One train later can save £10–£20</li>
-            </ul>
-        </div>
-        <div class="tip-card">
-            <h3>💳 Railcards</h3>
-            <ul>
-                <li><strong>16-25 Railcard:</strong> 1/3 off most fares (£30/yr)</li>
-                <li><strong>Two Together:</strong> 1/3 off when travelling as a pair</li>
-                <li><strong>Network Railcard:</strong> 1/3 off off-peak in SE England</li>
-                <li>Railcards work on Advance tickets too!</li>
-            </ul>
-        </div>
-        <div class="tip-card">
-            <h3>💡 Money-Saving Hacks</h3>
-            <ul>
-                <li>Book 2 singles instead of a return — often cheaper</li>
-                <li>Split tickets at intermediate stations for big savings</li>
-                <li>Use Split My Fare or TrainPal to find combos</li>
-                <li>GroupSave: 3-9 people get 1/3 off off-peak</li>
-            </ul>
-        </div>
-        <div class="tip-card">
-            <h3>🏛️ Canterbury Route</h3>
-            <ul>
-                <li>High-speed from St Pancras is ~55 min (pricier)</li>
-                <li>Slower via Victoria is ~1h 30m but cheaper off-peak</li>
-                <li>Canterbury West = closer to city centre</li>
-                <li>Southeastern runs both routes</li>
-            </ul>
-        </div>
-        <div class="tip-card">
-            <h3>🚂 Chelmsford Route</h3>
-            <ul>
-                <li>Direct from Liverpool Street — only 30-35 min</li>
-                <li>Frequent service (every 10-15 min at peak)</li>
-                <li>Greater Anglia often has flash sales</li>
-                <li>Oyster/contactless NOT valid — you need a ticket</li>
-            </ul>
-        </div>
-    `;
+    const tips = [
+        {
+            title: "🕐 When to Book",
+            items: [
+                "Advance tickets are released 8-12 weeks before travel",
+                "The cheapest fares sell out fast — book as early as possible",
+                "Tuesday and Wednesday mornings often have flash sales",
+                "Set up alerts on Trainline for price drops on your route"
+            ]
+        },
+        {
+            title: "⏰ Peak vs Off-Peak",
+            items: [
+                "Peak hours: Mon–Fri 06:00–09:30 and 16:00–19:00",
+                "Off-Peak fares can be 50%+ cheaper than Anytime",
+                "Weekend trains are usually off-peak all day",
+                "Some operators have Super Off-Peak for even cheaper midday travel"
+            ]
+        },
+        {
+            title: "💳 Railcards",
+            items: [
+                "16-25 Railcard: 1/3 off most fares (£30/year)",
+                "Two Together Railcard: 1/3 off when travelling in pairs",
+                "Network Railcard: 1/3 off in the South East",
+                "26-30 Railcard: 1/3 off, digital only",
+                "Senior, Disabled, Family & Friends cards also available"
+            ]
+        },
+        {
+            title: "💡 Money-Saving Hacks",
+            items: [
+                "Split tickets: buy separate tickets for legs of your journey",
+                "Use Split My Fare or TrainPal to find split combos automatically",
+                "Group Save: 3-9 people travelling together get 1/3 off",
+                "Check Megabus/coaches — sometimes cheaper for long routes",
+                "Return tickets are often only a few pounds more than singles"
+            ]
+        },
+        {
+            title: "📱 Useful Apps",
+            items: [
+                "Trainline: best all-round booking app with split tickets",
+                "National Rail: official timetables and live departures",
+                "TrainPal: AI-powered cheapest fare finder",
+                "Citymapper / Google Maps: real-time journey planning",
+                "Delay Repay apps: claim compensation for late trains"
+            ]
+        },
+        {
+            title: "🎫 Ticket Types Explained",
+            items: [
+                "Advance: cheapest, specific train only, non-refundable",
+                "Off-Peak: any off-peak train, semi-flexible",
+                "Anytime: any train, fully flexible, most expensive",
+                "Season: unlimited travel, best for daily commuters",
+                "Flexi Season: 8 days in 28 for hybrid workers"
+            ]
+        }
+    ];
+
+    document.getElementById('tipsGrid').innerHTML = tips.map(t =>
+        `<div class="tip-card">
+            <h3>${t.title}</h3>
+            <ul>${t.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>`
+    ).join('');
 }
 
-// ── Links ──
+// ══════════════════════════════════════
+// LINKS
+// ══════════════════════════════════════
 function renderLinks() {
-    const linkGroups = [
+    const groups = [
         {
             title: "Book Tickets",
             links: [
-                { label: "National Rail", desc: "Official journey planner & live fares", url: "https://www.nationalrail.co.uk/", icon: "🇬🇧", color: "#1d3557" },
-                { label: "Trainline", desc: "Compare all operators + split tickets", url: "https://www.thetrainline.com/", icon: "🚆", color: "#03a9f4" },
-                { label: "Southeastern Railway", desc: "London ↔ Canterbury direct", url: "https://www.southeasternrailway.co.uk/", icon: "🔵", color: "#0072bc" },
-                { label: "Greater Anglia", desc: "London ↔ Chelmsford direct", url: "https://www.greateranglia.co.uk/", icon: "🔴", color: "#e31837" }
+                { icon: "🇬🇧", color: "#1d3557", label: "National Rail", desc: "Official journey planner & tickets", url: "https://www.nationalrail.co.uk/" },
+                { icon: "🚆", color: "#03a9f4", label: "Trainline", desc: "Compare fares & buy tickets", url: "https://www.thetrainline.com/" },
+                { icon: "🎫", color: "#e31837", label: "LNER", desc: "London–Edinburgh, York, Leeds", url: "https://www.lner.co.uk/" },
+                { icon: "🎫", color: "#00a4e4", label: "Avanti West Coast", desc: "London–Manchester, Birmingham, Glasgow", url: "https://www.avantiwestcoast.co.uk/" },
+                { icon: "🎫", color: "#0a493e", label: "GWR", desc: "London–Bristol, Cardiff, Exeter, Plymouth", url: "https://www.gwr.com/" },
+                { icon: "🎫", color: "#00457c", label: "CrossCountry", desc: "Long-distance cross-country routes", url: "https://www.crosscountrytrains.co.uk/" }
             ]
         },
         {
             title: "Fare Splitters & Savers",
             links: [
-                { label: "Split My Fare", desc: "Find cheaper split-ticket combos", url: "https://www.splitmyfare.co.uk/", icon: "✂️", color: "#16a34a" },
-                { label: "TrainPal", desc: "AI-powered cheap ticket finder", url: "https://www.mytrainpal.com/", icon: "🤖", color: "#7c3aed" },
-                { label: "RailSmartr", desc: "Split ticketing tool", url: "https://www.railsmartr.com/", icon: "🧠", color: "#f59e0b" }
+                { icon: "✂️", color: "#16a34a", label: "Split My Fare", desc: "Find split-ticket savings", url: "https://www.splitmyfare.co.uk/" },
+                { icon: "🤖", color: "#7c3aed", label: "TrainPal", desc: "AI ticket finder with split fares", url: "https://www.mytrainpal.com/" },
+                { icon: "📊", color: "#0ea5e9", label: "RailSmartr", desc: "Smart route analysis", url: "https://www.railsmartr.co.uk/" }
             ]
         },
         {
             title: "Railcards",
             links: [
-                { label: "16-25 Railcard", desc: "1/3 off for young adults", url: "https://www.16-25railcard.co.uk/", icon: "🎓", color: "#8b5cf6" },
-                { label: "Two Together Railcard", desc: "1/3 off travelling as a pair", url: "https://www.twotogether-railcard.co.uk/", icon: "👥", color: "#ec4899" },
-                { label: "Network Railcard", desc: "1/3 off off-peak in SE England", url: "https://www.network-railcard.co.uk/", icon: "🗺️", color: "#0891b2" },
-                { label: "All Railcards", desc: "See every railcard available", url: "https://www.railcard.co.uk/", icon: "💳", color: "#3b82f6" }
+                { icon: "🎓", color: "#e91e63", label: "16-25 Railcard", desc: "1/3 off for young people", url: "https://www.16-25railcard.co.uk/" },
+                { icon: "👫", color: "#ff9800", label: "Two Together", desc: "1/3 off travelling in pairs", url: "https://www.twotogetherrailcard.co.uk/" },
+                { icon: "🌐", color: "#4caf50", label: "Network Railcard", desc: "1/3 off in South East", url: "https://www.network-railcard.co.uk/" },
+                { icon: "📋", color: "#2196f3", label: "All Railcards", desc: "View all available railcards", url: "https://www.railcard.co.uk/" }
             ]
         },
         {
             title: "Live Info & Delays",
             links: [
-                { label: "National Rail Live", desc: "Real-time departures", url: "https://www.nationalrail.co.uk/live-trains/departures/", icon: "📡", color: "#ef4444" },
-                { label: "Southeastern Live", desc: "Canterbury route status", url: "https://www.southeasternrailway.co.uk/travel-information/live-travel-information", icon: "📊", color: "#0072bc" },
-                { label: "Greater Anglia Live", desc: "Chelmsford route status", url: "https://www.greateranglia.co.uk/travel-information/live-departure-boards", icon: "📊", color: "#e31837" },
-                { label: "Delay Repay", desc: "Claim refunds for late trains", url: "https://www.nationalrail.co.uk/delay-repay/", icon: "💰", color: "#16a34a" }
+                { icon: "📡", color: "#ff5722", label: "National Rail Live", desc: "Live departures & arrivals", url: "https://www.nationalrail.co.uk/live-trains/" },
+                { icon: "⚠️", color: "#f44336", label: "Service Status", desc: "Check disruptions & cancellations", url: "https://www.nationalrail.co.uk/status-and-disruptions/" },
+                { icon: "💰", color: "#4caf50", label: "Delay Repay", desc: "Claim compensation for late trains", url: "https://www.nationalrail.co.uk/delay-repay/" }
             ]
         },
         {
             title: "Deals & Promos",
             links: [
-                { label: "Days Out Guide", desc: "2-for-1 attractions with train tickets", url: "https://www.daysoutguide.co.uk/", icon: "🎟️", color: "#dc2626" },
-                { label: "Seat61", desc: "Independent train travel guide", url: "https://www.seat61.com/UK-train-travel.htm", icon: "💺", color: "#7c3aed" },
-                { label: "Money Saving Expert – Trains", desc: "Latest tricks & deals", url: "https://www.moneysavingexpert.com/travel/cheap-train-tickets/", icon: "💷", color: "#f59e0b" }
+                { icon: "🏛️", color: "#9c27b0", label: "Days Out Guide", desc: "2-for-1 attractions by train", url: "https://www.daysoutguide.co.uk/" },
+                { icon: "🌍", color: "#009688", label: "Seat61", desc: "Expert UK & European train guide", url: "https://www.seat61.com/" },
+                { icon: "💷", color: "#ff9800", label: "Money Saving Expert", desc: "Latest train deals & tricks", url: "https://www.moneysavingexpert.com/travel/cheap-train-tickets/" }
             ]
         }
     ];
 
-    document.getElementById('linksGrid').innerHTML = linkGroups.map(g => `
-        <div class="link-group">
+    document.getElementById('linksGrid').innerHTML = groups.map(g =>
+        `<div class="link-group">
             <h3>${g.title}</h3>
-            ${g.links.map(l => `
-                <a href="${l.url}" target="_blank" rel="noopener" class="link-item">
+            ${g.links.map(l =>
+                `<a href="${l.url}" target="_blank" rel="noopener" class="link-item">
                     <div class="link-icon" style="background:${l.color}18; color:${l.color}">${l.icon}</div>
                     <div>
                         <div class="link-label">${l.label}</div>
                         <div class="link-desc">${l.desc}</div>
                     </div>
-                </a>
-            `).join('')}
-        </div>
-    `).join('');
+                </a>`
+            ).join('')}
+        </div>`
+    ).join('');
 }
 
-// ── Tabs ──
+// ══════════════════════════════════════
+// TABS
+// ══════════════════════════════════════
 document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1547,13 +1315,48 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
-// ── Init ──
-initSearch();
-renderRoutes();
-renderTimeGrid();
-initCalendar();
-renderTips();
-renderLinks();
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+(function init() {
+    // Setup autocomplete
+    setupAutocomplete('fromStation', 'fromList', (s) => { selectedFrom = s; });
+    setupAutocomplete('toStation', 'toList', (s) => { selectedTo = s; });
+
+    // Swap button
+    document.getElementById('swapBtn').addEventListener('click', () => {
+        const fromInput = document.getElementById('fromStation');
+        const toInput = document.getElementById('toStation');
+        const tempVal = fromInput.value;
+        const tempSel = selectedFrom;
+        fromInput.value = toInput.value;
+        selectedFrom = selectedTo;
+        toInput.value = tempVal;
+        selectedTo = tempSel;
+    });
+
+    // Date defaults
+    const dateInput = document.getElementById('searchDate');
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 14);
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+    dateInput.min = new Date().toISOString().split('T')[0];
+
+    // Search button
+    document.getElementById('searchBtn').addEventListener('click', doSearch);
+
+    // Clear recent
+    document.getElementById('clearRecent').addEventListener('click', () => {
+        localStorage.removeItem('trainRecentSearches');
+        renderRecent();
+    });
+
+    // Render everything
+    renderPopularRoutes();
+    renderRecent();
+    renderTips();
+    renderLinks();
+})();
 </script>
 </body>
 </html>
